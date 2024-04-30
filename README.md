@@ -1,2 +1,2 @@
 # AES_project
- The Advanced Encryption Standard (AES) is a symmetric block cipher that computers and other devices use to protect digital data.AES is designed to be efficient in both hardware and software, and supports a variety of key lengths: 128, 192, or 256 bits. 
+ The Advanced Encryption Standard (AES) is a symmetric block cipher that computers and other devices use to protect digital data.AES is designed to be efficient in both hardware and software, and supports a variety of key lengths: 128, 192, or 256 bits. It encrypts data in fixed-size blocks (128 bits) and uses several rounds of processing for security, which can be 10, 12, or 14 rounds depending on the key size.

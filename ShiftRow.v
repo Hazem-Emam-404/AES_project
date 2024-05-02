@@ -26,5 +26,9 @@ assign next[88:95]=State[56:63];
 assign next[120:127]=State[88:95];
 	
 
+<<<<<<< Updated upstream
 endmodule
 
+=======
+endmodule
+>>>>>>> Stashed changes

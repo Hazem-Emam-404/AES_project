@@ -1,4 +1,4 @@
-module AddroundKey(state,roundKey,outState);
+module AddRoundKey(state,roundKey,outState);
 
     input [127:0] state;
     input [127:0] roundKey;

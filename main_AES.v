@@ -94,11 +94,14 @@ module main_AES(LED,out_Byte,clk, decription_en);
 
     //7 segment 
     wire[6:0] _7seg0, _7seg1, _7seg2;
+    wire [9:0] lastByte;
     wire[11:0] lastByteBCD;
-    ADD4BIT a(out_Byte, lastByteBCD);
+    ADD4BIT a(out_Byte, lastByte);
+    assign lastByteBCD = {0,0, lastByte};
     BCD_7seg b(lastByteBCD[3:0],_7seg0);
     BCD_7seg c(lastByteBCD[7:4],_7seg1);
     BCD_7seg d(lastByteBCD[11:8],_7seg2);
+
 
 
 

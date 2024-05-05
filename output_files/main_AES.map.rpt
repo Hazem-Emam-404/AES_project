@@ -1,0 +1,848 @@
+Analysis & Synthesis report for main_AES
+Sun May  5 15:55:20 2024
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Inverted Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: KeyExpansion:KEX
+ 12. Port Connectivity Checks: "BCD_7seg:d"
+ 13. Port Connectivity Checks: "BCD_7seg:c"
+ 14. Port Connectivity Checks: "BCD_7seg:b"
+ 15. Port Connectivity Checks: "ADD4BIT:a|add3:t6"
+ 16. Port Connectivity Checks: "ADD4BIT:a|add3:t1"
+ 17. Port Connectivity Checks: "ADD4BIT:a"
+ 18. Port Connectivity Checks: "decryptRound:IDR|AddRoundKey:b"
+ 19. Port Connectivity Checks: "KeyExpansion:KEX"
+ 20. Port Connectivity Checks: "AddRoundKey:AK"
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Sun May  5 15:55:20 2024          ;
+; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
+; Revision Name                   ; main_AES                                       ;
+; Top-level Entity Name           ; main_AES                                       ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 585                                            ;
+; Total pins                      ; 11                                             ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 0                                              ;
+; Total DSP Blocks                ; 0                                              ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; main_AES           ; main_AES           ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                     ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                 ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
+; main_aes.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/main_aes.v        ;         ;
+; addroundkey.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/addroundkey.v     ;         ;
+; keyexpansion.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/keyexpansion.v    ;         ;
+; encryptround.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/encryptround.v    ;         ;
+; subbyte.v                        ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/subbyte.v         ;         ;
+; shiftrow127.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/shiftrow127.v     ;         ;
+; mixcolumns.v                     ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/mixcolumns.v      ;         ;
+; decryptround.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/decryptround.v    ;         ;
+; inv_shiftrow127.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/inv_shiftrow127.v ;         ;
+; inverse_subbyte.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/inverse_subbyte.v ;         ;
+; invmixcolumns.v                  ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/invmixcolumns.v   ;         ;
+; add4bit.v                        ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/add4bit.v         ;         ;
+; add3.v                           ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/add3.v            ;         ;
+; bcd_7seg.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/bcd_7seg.v        ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 1984      ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 2405      ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 1561      ;
+;     -- 5 input functions                    ; 317       ;
+;     -- 4 input functions                    ; 208       ;
+;     -- <=3 input functions                  ; 319       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 585       ;
+;                                             ;           ;
+; I/O pins                                    ; 11        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 585       ;
+; Total fan-out                               ; 14299     ;
+; Average fan-out                             ; 4.75      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                             ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                      ; Entity Name     ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+-----------------+--------------+
+; |main_AES                  ; 2405 (967)          ; 585 (585)                 ; 0                 ; 0          ; 11   ; 0            ; |main_AES                                ; main_AES        ; work         ;
+;    |encryptRound:ER|       ; 658 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER                ; encryptRound    ; work         ;
+;       |AddRoundKey:RK|     ; 158 (158)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER|AddRoundKey:RK ; AddRoundKey     ; work         ;
+;       |subByte:SB|         ; 500 (500)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER|subByte:SB     ; subByte         ; work         ;
+;    |inverse_subByte:ISB|   ; 640 (640)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|inverse_subByte:ISB            ; inverse_subByte ; work         ;
+;    |subByte:SB|            ; 140 (140)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|subByte:SB                     ; subByte         ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 585   ;
+; Number of registers using Synchronous Clear  ; 120   ;
+; Number of registers using Synchronous Load   ; 8     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 400   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; round_num_inv[3]                       ; 3       ;
+; round_num_inv[2]                       ; 3       ;
+; Total number of inverted registers = 2 ;         ;
++----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 4:1                ; 120 bits  ; 240 LEs       ; 120 LEs              ; 120 LEs                ; Yes        ; |main_AES|state_inv[115]   ;
+; 4:1                ; 120 bits  ; 240 LEs       ; 240 LEs              ; 0 LEs                  ; Yes        ; |main_AES|state[32]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main_AES|state            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |main_AES|state_inv        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: KeyExpansion:KEX ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; Nk             ; 6     ; Signed Integer                       ;
+; Nr             ; 12    ; Signed Integer                       ;
+; Nb             ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "BCD_7seg:d"                                                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; out  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "BCD_7seg:c"                                                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; out  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "BCD_7seg:b"                                                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; out  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "ADD4BIT:a|add3:t6" ;
++-------+-------+----------+--------------------+
+; Port  ; Type  ; Severity ; Details            ;
++-------+-------+----------+--------------------+
+; in[3] ; Input ; Info     ; Stuck at GND       ;
++-------+-------+----------+--------------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "ADD4BIT:a|add3:t1" ;
++-------+-------+----------+--------------------+
+; Port  ; Type  ; Severity ; Details            ;
++-------+-------+----------+--------------------+
+; in[3] ; Input ; Info     ; Stuck at GND       ;
++-------+-------+----------+--------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ADD4BIT:a"                                                                                                                                                              ;
++------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                                                 ;
++------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; out  ; Output ; Warning  ; Output or bidir port (10 bits) is smaller than the port expression (12 bits) it drives.  The 2 most-significant bit(s) in the port expression will be connected to GND. ;
++------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decryptRound:IDR|AddRoundKey:b"                                                         ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; outState ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "KeyExpansion:KEX"                                                                                                                                                                             ;
++---------------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                                                                                                                              ;
++---------------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; key           ; Input  ; Warning  ; Input port expression (193 bits) is wider than the input port (192 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; key[161..160] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[138..137] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[130..128] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[97..96]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[91..90]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[83..82]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[75..73]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[67..64]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[33..32]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[10..9]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[2..0]     ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[191..177] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[175..170] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[168..162] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[159..155] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[153..147] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[143..139] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[136..131] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[127..124] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[122..116] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[114..113] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[111..108] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[104..100] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[95..92]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[89..84]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[79..76]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[72..68]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[63..61]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[59..53]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[51..49]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[47..45]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[43..42]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[40..37]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[35..34]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[31..29]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[25..21]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[15..13]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[8..5]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[176]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[169]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[154]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[146]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[145]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[144]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[123]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[115]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[112]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[107]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[106]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[105]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[99]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[98]       ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[81]       ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[80]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[60]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[52]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[48]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[44]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[41]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[36]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[28]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[27]       ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[26]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[20]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[19]       ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[18]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[17]       ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[16]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[12]       ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[11]       ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; key[4]        ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                         ;
+; key[3]        ; Input  ; Info     ; Stuck at GND                                                                                                                                                                         ;
+; ExpKey        ; Output ; Warning  ; Output or bidir port (1664 bits) is smaller than the port expression (1665 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND.          ;
++---------------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "AddRoundKey:AK"        ;
++-----------------+-------+----------+--------------+
+; Port            ; Type  ; Severity ; Details      ;
++-----------------+-------+----------+--------------+
+; state[101..100] ; Input ; Info     ; Stuck at VCC ;
+; state[97..96]   ; Input ; Info     ; Stuck at VCC ;
+; state[78..77]   ; Input ; Info     ; Stuck at VCC ;
+; state[74..73]   ; Input ; Info     ; Stuck at VCC ;
+; state[70..68]   ; Input ; Info     ; Stuck at VCC ;
+; state[66..63]   ; Input ; Info     ; Stuck at VCC ;
+; state[52..51]   ; Input ; Info     ; Stuck at VCC ;
+; state[48..47]   ; Input ; Info     ; Stuck at VCC ;
+; state[37..35]   ; Input ; Info     ; Stuck at VCC ;
+; state[33..30]   ; Input ; Info     ; Stuck at VCC ;
+; state[27..26]   ; Input ; Info     ; Stuck at VCC ;
+; state[23..22]   ; Input ; Info     ; Stuck at VCC ;
+; state[20..18]   ; Input ; Info     ; Stuck at VCC ;
+; state[16..13]   ; Input ; Info     ; Stuck at VCC ;
+; state[11..9]    ; Input ; Info     ; Stuck at VCC ;
+; state[7..0]     ; Input ; Info     ; Stuck at VCC ;
+; state[127..117] ; Input ; Info     ; Stuck at GND ;
+; state[115..113] ; Input ; Info     ; Stuck at GND ;
+; state[111..110] ; Input ; Info     ; Stuck at GND ;
+; state[108..106] ; Input ; Info     ; Stuck at GND ;
+; state[104..102] ; Input ; Info     ; Stuck at GND ;
+; state[99..98]   ; Input ; Info     ; Stuck at GND ;
+; state[93..91]   ; Input ; Info     ; Stuck at GND ;
+; state[89..87]   ; Input ; Info     ; Stuck at GND ;
+; state[76..75]   ; Input ; Info     ; Stuck at GND ;
+; state[72..71]   ; Input ; Info     ; Stuck at GND ;
+; state[62..60]   ; Input ; Info     ; Stuck at GND ;
+; state[58..56]   ; Input ; Info     ; Stuck at GND ;
+; state[54..53]   ; Input ; Info     ; Stuck at GND ;
+; state[50..49]   ; Input ; Info     ; Stuck at GND ;
+; state[29..28]   ; Input ; Info     ; Stuck at GND ;
+; state[25..24]   ; Input ; Info     ; Stuck at GND ;
+; state[116]      ; Input ; Info     ; Stuck at VCC ;
+; state[112]      ; Input ; Info     ; Stuck at VCC ;
+; state[109]      ; Input ; Info     ; Stuck at VCC ;
+; state[105]      ; Input ; Info     ; Stuck at VCC ;
+; state[95]       ; Input ; Info     ; Stuck at GND ;
+; state[94]       ; Input ; Info     ; Stuck at VCC ;
+; state[90]       ; Input ; Info     ; Stuck at VCC ;
+; state[86]       ; Input ; Info     ; Stuck at VCC ;
+; state[85]       ; Input ; Info     ; Stuck at GND ;
+; state[84]       ; Input ; Info     ; Stuck at VCC ;
+; state[83]       ; Input ; Info     ; Stuck at GND ;
+; state[82]       ; Input ; Info     ; Stuck at VCC ;
+; state[81]       ; Input ; Info     ; Stuck at GND ;
+; state[80]       ; Input ; Info     ; Stuck at VCC ;
+; state[79]       ; Input ; Info     ; Stuck at GND ;
+; state[67]       ; Input ; Info     ; Stuck at GND ;
+; state[59]       ; Input ; Info     ; Stuck at VCC ;
+; state[55]       ; Input ; Info     ; Stuck at VCC ;
+; state[46]       ; Input ; Info     ; Stuck at GND ;
+; state[45]       ; Input ; Info     ; Stuck at VCC ;
+; state[44]       ; Input ; Info     ; Stuck at GND ;
+; state[43]       ; Input ; Info     ; Stuck at VCC ;
+; state[42]       ; Input ; Info     ; Stuck at GND ;
+; state[41]       ; Input ; Info     ; Stuck at VCC ;
+; state[40]       ; Input ; Info     ; Stuck at GND ;
+; state[39]       ; Input ; Info     ; Stuck at VCC ;
+; state[38]       ; Input ; Info     ; Stuck at GND ;
+; state[34]       ; Input ; Info     ; Stuck at GND ;
+; state[21]       ; Input ; Info     ; Stuck at GND ;
+; state[17]       ; Input ; Info     ; Stuck at GND ;
+; state[12]       ; Input ; Info     ; Stuck at GND ;
+; state[8]        ; Input ; Info     ; Stuck at GND ;
++-----------------+-------+----------+--------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 585                         ;
+;     ENA               ; 280                         ;
+;     ENA SCLR          ; 120                         ;
+;     SLD               ; 8                           ;
+;     plain             ; 177                         ;
+; arriav_lcell_comb     ; 2405                        ;
+;     arith             ; 63                          ;
+;         1 data inputs ; 62                          ;
+;         2 data inputs ; 1                           ;
+;     normal            ; 2342                        ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 95                          ;
+;         3 data inputs ; 157                         ;
+;         4 data inputs ; 208                         ;
+;         5 data inputs ; 317                         ;
+;         6 data inputs ; 1561                        ;
+; boundary_port         ; 11                          ;
+;                       ;                             ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 4.74                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+    Info: Processing started: Sun May  5 15:55:09 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AES_project -c main_AES
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Warning (12125): Using design file main_aes.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: main_AES File: D:/uni programming project/Verilog Project/main_aes.v Line: 1
+Info (12127): Elaborating entity "main_AES" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at main_aes.v(30): object "expected_out" assigned a value but never read File: D:/uni programming project/Verilog Project/main_aes.v Line: 30
+Warning (10855): Verilog HDL warning at main_aes.v(54): initial value for variable state should be constant File: D:/uni programming project/Verilog Project/main_aes.v Line: 54
+Warning (10855): Verilog HDL warning at main_aes.v(54): initial value for variable out_Byte should be constant File: D:/uni programming project/Verilog Project/main_aes.v Line: 54
+Warning (12125): Using design file addroundkey.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: AddRoundKey File: D:/uni programming project/Verilog Project/addroundkey.v Line: 1
+Info (12128): Elaborating entity "AddRoundKey" for hierarchy "AddRoundKey:AK" File: D:/uni programming project/Verilog Project/main_aes.v Line: 68
+Warning (10463): Verilog HDL Declaration warning at keyexpansion.v(13): "new" is SystemVerilog-2005 keyword File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 13
+Warning (12125): Using design file keyexpansion.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: KeyExpansion File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 1
+Info (12128): Elaborating entity "KeyExpansion" for hierarchy "KeyExpansion:KEX" File: D:/uni programming project/Verilog Project/main_aes.v Line: 69
+Warning (12125): Using design file encryptround.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: encryptRound File: D:/uni programming project/Verilog Project/encryptround.v Line: 1
+Info (12128): Elaborating entity "encryptRound" for hierarchy "encryptRound:ER" File: D:/uni programming project/Verilog Project/main_aes.v Line: 70
+Warning (12125): Using design file subbyte.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: subByte File: D:/uni programming project/Verilog Project/subbyte.v Line: 1
+Info (12128): Elaborating entity "subByte" for hierarchy "encryptRound:ER|subByte:SB" File: D:/uni programming project/Verilog Project/encryptround.v Line: 14
+Warning (12125): Using design file shiftrow127.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: shiftrow127 File: D:/uni programming project/Verilog Project/shiftrow127.v Line: 1
+Info (12128): Elaborating entity "shiftrow127" for hierarchy "encryptRound:ER|shiftrow127:SR" File: D:/uni programming project/Verilog Project/encryptround.v Line: 15
+Warning (12125): Using design file mixcolumns.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: MixColumns File: D:/uni programming project/Verilog Project/mixcolumns.v Line: 1
+Info (12128): Elaborating entity "MixColumns" for hierarchy "encryptRound:ER|MixColumns:MC" File: D:/uni programming project/Verilog Project/encryptround.v Line: 16
+Warning (10230): Verilog HDL assignment warning at mixcolumns.v(11): truncated value with size 32 to match size of target (8) File: D:/uni programming project/Verilog Project/mixcolumns.v Line: 11
+Warning (12125): Using design file decryptround.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: decryptRound File: D:/uni programming project/Verilog Project/decryptround.v Line: 1
+Info (12128): Elaborating entity "decryptRound" for hierarchy "decryptRound:IDR" File: D:/uni programming project/Verilog Project/main_aes.v Line: 84
+Warning (12125): Using design file inv_shiftrow127.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: inv_shiftrow127 File: D:/uni programming project/Verilog Project/inv_shiftrow127.v Line: 1
+Info (12128): Elaborating entity "inv_shiftrow127" for hierarchy "decryptRound:IDR|inv_shiftrow127:r" File: D:/uni programming project/Verilog Project/decryptround.v Line: 10
+Warning (12125): Using design file inverse_subbyte.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: inverse_subByte File: D:/uni programming project/Verilog Project/inverse_subbyte.v Line: 2
+Info (12128): Elaborating entity "inverse_subByte" for hierarchy "decryptRound:IDR|inverse_subByte:s" File: D:/uni programming project/Verilog Project/decryptround.v Line: 11
+Warning (12125): Using design file invmixcolumns.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: InvMixColumns File: D:/uni programming project/Verilog Project/invmixcolumns.v Line: 1
+Info (12128): Elaborating entity "InvMixColumns" for hierarchy "decryptRound:IDR|InvMixColumns:m" File: D:/uni programming project/Verilog Project/decryptround.v Line: 13
+Warning (10230): Verilog HDL assignment warning at invmixcolumns.v(9): truncated value with size 32 to match size of target (8) File: D:/uni programming project/Verilog Project/invmixcolumns.v Line: 9
+Warning (10230): Verilog HDL assignment warning at invmixcolumns.v(46): truncated value with size 32 to match size of target (8) File: D:/uni programming project/Verilog Project/invmixcolumns.v Line: 46
+Warning (12125): Using design file add4bit.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: ADD4BIT File: D:/uni programming project/Verilog Project/add4bit.v Line: 1
+Info (12128): Elaborating entity "ADD4BIT" for hierarchy "ADD4BIT:a" File: D:/uni programming project/Verilog Project/main_aes.v Line: 98
+Warning (12125): Using design file add3.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: add3 File: D:/uni programming project/Verilog Project/add3.v Line: 1
+Info (12128): Elaborating entity "add3" for hierarchy "ADD4BIT:a|add3:t1" File: D:/uni programming project/Verilog Project/add4bit.v Line: 23
+Warning (12125): Using design file bcd_7seg.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: BCD_7seg File: D:/uni programming project/Verilog Project/bcd_7seg.v Line: 1
+Info (12128): Elaborating entity "BCD_7seg" for hierarchy "BCD_7seg:b" File: D:/uni programming project/Verilog Project/main_aes.v Line: 99
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[127]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[126]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[125]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[124]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[123]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[122]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[121]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[120]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[119]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[118]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[117]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[116]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[115]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[114]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[113]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[112]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[111]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[110]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[109]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[108]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[107]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[106]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[105]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[104]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[103]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[102]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[101]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[100]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[99]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[98]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[97]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[96]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[95]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[94]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[93]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[92]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[91]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[90]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[89]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[88]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[87]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[86]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[85]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[84]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[83]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[82]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[81]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[80]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[79]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[78]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[77]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[76]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[75]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[74]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[73]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[72]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[71]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[70]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[69]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[68]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[67]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[66]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[65]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[64]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[63]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[62]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[61]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[60]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[59]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[58]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[57]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[56]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[55]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[54]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[53]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[52]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[51]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[50]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[49]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[48]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[47]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[46]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[45]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[44]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[43]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[42]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[41]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[40]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[39]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[38]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[37]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[36]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[35]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[34]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[33]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[32]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[31]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[30]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[29]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[28]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[27]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[26]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[25]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[24]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[23]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[22]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[21]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[20]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[19]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[18]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[17]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[16]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[15]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[14]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[13]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[12]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[9]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[8]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[7]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[6]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[5]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[4]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[3]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[2]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[1]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+    Warning (12110): Net "decryptRound:IDR|afterAddroundKey[0]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/decryptround.v Line: 8
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "lastByteBCD[11]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+    Warning (12110): Net "lastByteBCD[10]" is missing source, defaulting to GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 97
+Info (276014): Found 32 instances of uninferred RAM logic
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram0" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram1" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram2" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram3" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram4" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram5" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram6" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram7" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram8" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram9" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram10" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram11" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram12" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram13" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram14" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram15" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram16" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram17" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram18" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram19" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram20" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram21" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram22" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram23" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram24" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram25" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram26" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram27" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram28" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram29" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram30" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (276007): RAM logic "KeyExpansion:KEX|Ram31" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (286030): Timing-Driven Synthesis is running
+Warning (20013): Ignored 24 assignments for entity "TEST" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity TEST -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity TEST -section_id Top was ignored
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 2582 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 9 output pins
+    Info (21061): Implemented 2571 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 213 warnings
+    Info: Peak virtual memory: 4920 megabytes
+    Info: Processing ended: Sun May  5 15:55:21 2024
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:19
+
+

@@ -1,7 +1,7 @@
 module main_AES(LED,out_Byte,clk, decription_en);
 
     input clk;
-    input  decription_en;
+    input decription_en;
     output reg LED;
     output reg [7:0] out_Byte;
 
@@ -92,6 +92,14 @@ module main_AES(LED,out_Byte,clk, decription_en);
     AddRoundKey IRK(.state(after_InvsubBytes), .roundKey(Exp_key[128*(Nr+1)-1 -: 128]), .outState(last_out_state_inv));
  ///-----------------------------------------------------------------------------------------------
 
+    //7 segment 
+    wire[6:0] _7seg0, _7seg1, _7seg2;
+    wire[11:0] lastByteBCD;
+    ADD4BIT a(out_Byte, lastByteBCD);
+    BCD_7seg b(lastByteBCD[3:0],_7seg0);
+    BCD_7seg c(lastByteBCD[7:4],_7seg1);
+    BCD_7seg d(lastByteBCD[11:8],_7seg2);
+
 
 
 
@@ -121,9 +129,12 @@ module main_AES(LED,out_Byte,clk, decription_en);
 	    if(plain_text == decrypt_output)
 		    LED = 1; 
 
-        if(round_num< Nr+1)
-        out_Byte = state [7:0];
-        else out_Byte = state_inv [7:0];
-        round_num = round_num+1;
+       if(round_num< Nr+1)
+				out_Byte = state[7:0];
+       else 
+				out_Byte = state_inv[7:0];
+    
+
+        round_num = round_num + 1;
     end
 endmodule

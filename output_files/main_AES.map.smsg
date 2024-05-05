@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at main_aes.v(106): always construct contains both blocking and non-blocking assignments File: D:/uni programming project/Verilog Project/main_aes.v Line: 106

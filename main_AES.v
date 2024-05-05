@@ -1,13 +1,13 @@
-module main_AES(LED,out_Byte,clk, decription_en);
+module main_AES(LED, _7seg2, _7seg1, _7seg0, clk, decription_en);
 
     input clk;
     input decription_en;
     output reg LED;
-    output reg [7:0] out_Byte;
+    output reg [6:0] _7seg2, _7seg1, _7seg0;
+	 reg out_Byte;
 
 
-
-    localparam Nk =6 ;
+    localparam Nk = 6;
     localparam Nr = 12;
     localparam Nb = 4;
     integer round_num;
@@ -92,11 +92,11 @@ module main_AES(LED,out_Byte,clk, decription_en);
  ///-----------------------------------------------------------------------------------------------
 
     //7 segment 
-    wire[6:0] _7seg0, _7seg1, _7seg2;
+    //wire[6:0] _7seg0, _7seg1, _7seg2;
     wire [9:0] lastByte;
     wire[11:0] lastByteBCD;
     ADD4BIT a(out_Byte, lastByte);
-    assign lastByteBCD = {0,0, lastByte};
+    assign lastByteBCD = {1'b0,1'b0, lastByte};
     BCD_7seg b(lastByteBCD[3:0],_7seg0);
     BCD_7seg c(lastByteBCD[7:4],_7seg1);
     BCD_7seg d(lastByteBCD[11:8],_7seg2);
@@ -115,7 +115,7 @@ module main_AES(LED,out_Byte,clk, decription_en);
             state = last_out_state;
             Encrypt_output = last_out_state;
             end
-         if (round_num>Nr &&  decription_en == 1) begin
+        if (round_num>Nr &&  decription_en == 1) begin
             if(round_num_inv == Nr)
                 state_inv = first_out_state_inv;
             else if(round_num_inv > 0)

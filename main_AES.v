@@ -16,7 +16,7 @@ module main_AES(LED,out_Byte,clk, decription_en);
     assign plain_text=128'h00112233445566778899aabbccddeeff;
 
     /////////// ------->input key
-    wire [32*Nk:0] in_key;
+    wire [32*Nk-1:0] in_key;
 
 
     //assign in_key =128'h000102030405060708090a0b0c0d0e0f;  
@@ -31,7 +31,7 @@ module main_AES(LED,out_Byte,clk, decription_en);
     assign expected_out = 128'hdda97ca4864cdfe06eaf70a0ec0d7191;
 
     /////////// --->Expanded key
-    wire [ 128*(Nr+1) : 0 ] Exp_key;
+    wire [ 128*(Nr+1)-1 : 0 ] Exp_key;
 
     //----------------for Encryption---------------------------------
     wire [127:0] out_state;
@@ -86,7 +86,6 @@ module main_AES(LED,out_Byte,clk, decription_en);
     // last round 
     wire [127:0] after_InvshifRows;
     wire [127:0] after_InvsubBytes;
-    wire [127:0] after_InvaddRoundKey;
     inv_shiftrow127 ISR(state_inv, after_InvshifRows);
     inverse_subByte ISB(.statebar(after_InvshifRows), .state(after_InvsubBytes));
     AddRoundKey IRK(.state(after_InvsubBytes), .roundKey(Exp_key[128*(Nr+1)-1 -: 128]), .outState(last_out_state_inv));

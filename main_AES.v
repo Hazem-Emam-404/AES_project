@@ -7,8 +7,8 @@ module main_AES(LED, _7seg2, _7seg1, _7seg0, clk, decription_en);
 	 reg [7:0] out_Byte;
 
 
-    localparam Nk = 6;
-    localparam Nr = 12;
+    localparam Nk = 8;
+    localparam Nr = 14;
     localparam Nb = 4;
     integer round_num;
     integer round_num_inv;
@@ -20,15 +20,17 @@ module main_AES(LED, _7seg2, _7seg1, _7seg0, clk, decription_en);
 
 
     //assign in_key =128'h000102030405060708090a0b0c0d0e0f;  
-    assign in_key =192'h000102030405060708090a0b0c0d0e0f1011121314151617;  
-    //assign in_key =256'h000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f;
+    //assign in_key =192'h000102030405060708090a0b0c0d0e0f1011121314151617;  
+    assign in_key =256'h000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f;
     //-----------------------------------------------
 
 
 
     // ----------------> Expected
     wire [127:0] expected_out;
-    assign expected_out = 128'hdda97ca4864cdfe06eaf70a0ec0d7191;
+    //assign expected_out = 128'hdda97ca4864cdfe06eaf70a0ec0d7191;
+	 //assign expected_out = 128'h69c4e0d86a7b0430d8cdb78070b4c55a;
+	 assign expected_out = 128'h8ea2b7ca516745bfeafc49904b496089;
 
     /////////// --->Expanded key
     wire [ 128*(Nr+1)-1 : 0 ] Exp_key;

@@ -8,35 +8,83 @@
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[0]",
+					"name" : "_7seg2[0]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[1]",
+					"name" : "_7seg2[2]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[2]",
+					"name" : "_7seg2[3]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[3]",
+					"name" : "_7seg2[4]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[4]",
+					"name" : "_7seg2[5]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[5]",
+					"name" : "_7seg2[6]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[6]",
+					"name" : "_7seg1[0]",
 					"strict" : false
 				},
 				{
-					"name" : "out_Byte[7]",
+					"name" : "_7seg1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "_7seg0[6]",
 					"strict" : false
 				},
 				{

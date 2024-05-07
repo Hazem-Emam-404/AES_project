@@ -3,8 +3,8 @@ module main_AES(LED, _7seg2, _7seg1, _7seg0, clk, decription_en);
     input clk;
     input decription_en;
     output reg LED;
-    output reg [6:0] _7seg2, _7seg1, _7seg0;
-	 reg out_Byte;
+    output wire [6:0] _7seg2, _7seg1, _7seg0;
+	 reg [7:0] out_Byte;
 
 
     localparam Nk = 6;

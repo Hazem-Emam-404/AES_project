@@ -92,7 +92,19 @@
 					"strict" : false
 				},
 				{
+					"name" : "mode[1]",
+					"strict" : false
+				},
+				{
+					"name" : "mode[0]",
+					"strict" : false
+				},
+				{
 					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
 					"strict" : false
 				}
 			]

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main_AES
-Tue May  7 11:08:50 2024
+Wed May 15 12:00:11 2024
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -13,18 +13,21 @@ Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Parameter Settings for User Entity Instance: KeyExpansion:KEX
+  8. User-Specified and Inferred Latches
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
  12. Port Connectivity Checks: "BCD_7seg:d"
  13. Port Connectivity Checks: "ADD4BIT:a|add3:t6"
  14. Port Connectivity Checks: "ADD4BIT:a|add3:t1"
- 15. Port Connectivity Checks: "KeyExpansion:KEX"
- 16. Port Connectivity Checks: "AddRoundKey:AK"
- 17. Post-Synthesis Netlist Statistics for Top Partition
- 18. Elapsed Time Per Partition
- 19. Analysis & Synthesis Messages
+ 15. Port Connectivity Checks: "AddRoundKey:AK128"
+ 16. Port Connectivity Checks: "KeyExpansion256:KEXP256"
+ 17. Port Connectivity Checks: "KeyExpansion192:KEXP192"
+ 18. Port Connectivity Checks: "KeyExpansion128:KEXP128"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
+ 22. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -51,14 +54,14 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue May  7 11:08:50 2024          ;
+; Analysis & Synthesis Status     ; Successful - Wed May 15 12:00:11 2024          ;
 ; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
 ; Revision Name                   ; main_AES                                       ;
 ; Top-level Entity Name           ; main_AES                                       ;
 ; Family                          ; Cyclone V                                      ;
 ; Logic utilization (in ALMs)     ; N/A                                            ;
 ; Total registers                 ; 585                                            ;
-; Total pins                      ; 24                                             ;
+; Total pins                      ; 27                                             ;
 ; Total virtual pins              ; 0                                              ;
 ; Total block memory bits         ; 0                                              ;
 ; Total DSP Blocks                ; 0                                              ;
@@ -163,93 +166,121 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 14          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 14          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
 ;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processors 8-14        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                     ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                 ; Library ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
-; main_aes.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/main_aes.v        ;         ;
-; addroundkey.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/addroundkey.v     ;         ;
-; keyexpansion.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/keyexpansion.v    ;         ;
-; encryptround.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/encryptround.v    ;         ;
-; subbyte.v                        ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/subbyte.v         ;         ;
-; shiftrow127.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/shiftrow127.v     ;         ;
-; mixcolumns.v                     ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/mixcolumns.v      ;         ;
-; decryptround.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/decryptround.v    ;         ;
-; inv_shiftrow127.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/inv_shiftrow127.v ;         ;
-; inverse_subbyte.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/inverse_subbyte.v ;         ;
-; invmixcolumns.v                  ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/invmixcolumns.v   ;         ;
-; add4bit.v                        ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/add4bit.v         ;         ;
-; add3.v                           ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/add3.v            ;         ;
-; bcd_7seg.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/uni programming project/Verilog Project/bcd_7seg.v        ;         ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                        ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                    ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------+---------+
+; main_aes.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/main_aes.v        ;         ;
+; keyexpansion128.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/keyexpansion128.v ;         ;
+; keyexpansion192.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/keyexpansion192.v ;         ;
+; keyexpansion256.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/keyexpansion256.v ;         ;
+; addroundkey.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/addroundkey.v     ;         ;
+; encryptround.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/encryptround.v    ;         ;
+; subbyte.v                        ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/subbyte.v         ;         ;
+; shiftrow127.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/shiftrow127.v     ;         ;
+; mixcolumns.v                     ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/mixcolumns.v      ;         ;
+; decryptround.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/decryptround.v    ;         ;
+; inv_shiftrow127.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/inv_shiftrow127.v ;         ;
+; inverse_subbyte.v                ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/inverse_subbyte.v ;         ;
+; invmixcolumns.v                  ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/invmixcolumns.v   ;         ;
+; add4bit.v                        ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/add4bit.v         ;         ;
+; add3.v                           ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/add3.v            ;         ;
+; bcd_7seg.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/modelsim/projects/AES_proj/bcd_7seg.v        ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------+---------+
 
 
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 2240      ;
-;                                             ;           ;
-; Combinational ALUT usage for logic          ; 2877      ;
-;     -- 7 input functions                    ; 0         ;
-;     -- 6 input functions                    ; 1601      ;
-;     -- 5 input functions                    ; 400       ;
-;     -- 4 input functions                    ; 515       ;
-;     -- <=3 input functions                  ; 361       ;
-;                                             ;           ;
-; Dedicated logic registers                   ; 585       ;
-;                                             ;           ;
-; I/O pins                                    ; 24        ;
-;                                             ;           ;
-; Total DSP Blocks                            ; 0         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 585       ;
-; Total fan-out                               ; 16326     ;
-; Average fan-out                             ; 4.65      ;
-+---------------------------------------------+-----------+
++------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary          ;
++---------------------------------------------+--------+
+; Resource                                    ; Usage  ;
++---------------------------------------------+--------+
+; Estimate of Logic utilization (ALMs needed) ; 3941   ;
+;                                             ;        ;
+; Combinational ALUT usage for logic          ; 5321   ;
+;     -- 7 input functions                    ; 98     ;
+;     -- 6 input functions                    ; 2462   ;
+;     -- 5 input functions                    ; 987    ;
+;     -- 4 input functions                    ; 1066   ;
+;     -- <=3 input functions                  ; 708    ;
+;                                             ;        ;
+; Dedicated logic registers                   ; 585    ;
+;                                             ;        ;
+; I/O pins                                    ; 27     ;
+;                                             ;        ;
+; Total DSP Blocks                            ; 0      ;
+;                                             ;        ;
+; Maximum fan-out node                        ; Add3~1 ;
+; Maximum fan-out                             ; 998    ;
+; Total fan-out                               ; 28360  ;
+; Average fan-out                             ; 4.76   ;
++---------------------------------------------+--------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------+-----------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                         ; Entity Name     ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------+-----------------+--------------+
-; |main_AES                  ; 2877 (1039)         ; 585 (585)                 ; 0                 ; 0          ; 24   ; 0            ; |main_AES                                   ; main_AES        ; work         ;
-;    |ADD4BIT:a|             ; 8 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a                         ; ADD4BIT         ; work         ;
-;       |add3:t3|            ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t3                 ; add3            ; work         ;
-;       |add3:t4|            ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t4                 ; add3            ; work         ;
-;       |add3:t5|            ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t5                 ; add3            ; work         ;
-;       |add3:t7|            ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t7                 ; add3            ; work         ;
-;    |BCD_7seg:b|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|BCD_7seg:b                        ; BCD_7seg        ; work         ;
-;    |BCD_7seg:c|            ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|BCD_7seg:c                        ; BCD_7seg        ; work         ;
-;    |BCD_7seg:d|            ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|BCD_7seg:d                        ; BCD_7seg        ; work         ;
-;    |decryptRound:IDR|      ; 369 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR                  ; decryptRound    ; work         ;
-;       |AddRoundKey:RK|     ; 48 (48)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR|AddRoundKey:RK   ; AddRoundKey     ; work         ;
-;       |InvMixColumns:MC|   ; 321 (321)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR|InvMixColumns:MC ; InvMixColumns   ; work         ;
-;    |encryptRound:ER|       ; 694 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER                   ; encryptRound    ; work         ;
-;       |AddRoundKey:RK|     ; 164 (164)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER|AddRoundKey:RK    ; AddRoundKey     ; work         ;
-;       |subByte:SB|         ; 530 (530)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER|subByte:SB        ; subByte         ; work         ;
-;    |inverse_subByte:ISB|   ; 640 (640)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|inverse_subByte:ISB               ; inverse_subByte ; work         ;
-;    |subByte:SB|            ; 110 (110)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|subByte:SB                        ; subByte         ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------+-----------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                    ;
++-----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node  ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                            ; Entity Name     ; Library Name ;
++-----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+-----------------+--------------+
+; |main_AES                   ; 5321 (2100)         ; 585 (585)                 ; 0                 ; 0          ; 27   ; 0            ; |main_AES                                      ; main_AES        ; work         ;
+;    |ADD4BIT:a|              ; 8 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a                            ; ADD4BIT         ; work         ;
+;       |add3:t3|             ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t3                    ; add3            ; work         ;
+;       |add3:t4|             ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t4                    ; add3            ; work         ;
+;       |add3:t5|             ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t5                    ; add3            ; work         ;
+;       |add3:t7|             ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|ADD4BIT:a|add3:t7                    ; add3            ; work         ;
+;    |BCD_7seg:b|             ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|BCD_7seg:b                           ; BCD_7seg        ; work         ;
+;    |BCD_7seg:c|             ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|BCD_7seg:c                           ; BCD_7seg        ; work         ;
+;    |BCD_7seg:d|             ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|BCD_7seg:d                           ; BCD_7seg        ; work         ;
+;    |decryptRound:IDR128|    ; 545 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR128                  ; decryptRound    ; work         ;
+;       |AddRoundKey:RK|      ; 71 (71)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR128|AddRoundKey:RK   ; AddRoundKey     ; work         ;
+;       |InvMixColumns:MC|    ; 474 (474)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR128|InvMixColumns:MC ; InvMixColumns   ; work         ;
+;    |decryptRound:IDR192|    ; 519 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR192                  ; decryptRound    ; work         ;
+;       |AddRoundKey:RK|      ; 62 (62)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR192|AddRoundKey:RK   ; AddRoundKey     ; work         ;
+;       |InvMixColumns:MC|    ; 457 (457)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR192|InvMixColumns:MC ; InvMixColumns   ; work         ;
+;    |decryptRound:IDR256|    ; 545 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR256                  ; decryptRound    ; work         ;
+;       |AddRoundKey:RK|      ; 58 (58)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR256|AddRoundKey:RK   ; AddRoundKey     ; work         ;
+;       |InvMixColumns:MC|    ; 487 (487)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|decryptRound:IDR256|InvMixColumns:MC ; InvMixColumns   ; work         ;
+;    |encryptRound:ER128|     ; 682 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER128                   ; encryptRound    ; work         ;
+;       |AddRoundKey:RK|      ; 152 (152)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER128|AddRoundKey:RK    ; AddRoundKey     ; work         ;
+;       |subByte:SB|          ; 530 (530)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER128|subByte:SB        ; subByte         ; work         ;
+;    |encryptRound:ER192|     ; 56 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER192                   ; encryptRound    ; work         ;
+;       |AddRoundKey:RK|      ; 56 (56)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER192|AddRoundKey:RK    ; AddRoundKey     ; work         ;
+;    |encryptRound:ER256|     ; 99 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER256                   ; encryptRound    ; work         ;
+;       |AddRoundKey:RK|      ; 99 (99)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|encryptRound:ER256|AddRoundKey:RK    ; AddRoundKey     ; work         ;
+;    |inverse_subByte:ISB128| ; 640 (640)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|inverse_subByte:ISB128               ; inverse_subByte ; work         ;
+;    |subByte:SB128|          ; 110 (110)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main_AES|subByte:SB128                        ; subByte         ; work         ;
++-----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; Nr[2]                                              ; reset               ; yes                    ;
+; Nr[1]                                              ; reset               ; yes                    ;
+; Number of user-specified and inferred latches = 2  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------+
@@ -259,24 +290,98 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Total registers                              ; 585   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 128   ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Synchronous Load   ; 25    ;
+; Number of registers using Asynchronous Clear ; 329   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 400   ;
+; Number of registers using Clock Enable       ; 408   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; round_num_inv[3]                       ; 130     ;
-; round_num_inv[2]                       ; 130     ;
-; round_num_inv[1]                       ; 130     ;
-; Total number of inverted registers = 3 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; out_Byte[3]                             ; 10      ;
+; out_Byte[4]                             ; 10      ;
+; out_Byte[5]                             ; 10      ;
+; out_Byte[7]                             ; 10      ;
+; out_Byte[6]                             ; 10      ;
+; out_Byte[2]                             ; 15      ;
+; out_Byte[1]                             ; 8       ;
+; out_Byte[0]                             ; 7       ;
+; round_num_inv[3]                        ; 7       ;
+; state[32]                               ; 26      ;
+; state[33]                               ; 29      ;
+; state[35]                               ; 29      ;
+; state[36]                               ; 29      ;
+; state[37]                               ; 26      ;
+; state[39]                               ; 17      ;
+; state[3]                                ; 30      ;
+; state[26]                               ; 26      ;
+; state[27]                               ; 29      ;
+; state[31]                               ; 17      ;
+; state[30]                               ; 26      ;
+; state[73]                               ; 29      ;
+; state[74]                               ; 26      ;
+; state[77]                               ; 26      ;
+; state[78]                               ; 26      ;
+; state[112]                              ; 26      ;
+; state[116]                              ; 29      ;
+; state[4]                                ; 30      ;
+; state[5]                                ; 27      ;
+; state[7]                                ; 18      ;
+; state[6]                                ; 27      ;
+; state[2]                                ; 27      ;
+; state[1]                                ; 30      ;
+; state[0]                                ; 27      ;
+; state[64]                               ; 26      ;
+; state[65]                               ; 29      ;
+; state[66]                               ; 26      ;
+; state[70]                               ; 26      ;
+; state[69]                               ; 26      ;
+; state[68]                               ; 29      ;
+; state[59]                               ; 29      ;
+; state[63]                               ; 17      ;
+; state[16]                               ; 26      ;
+; state[18]                               ; 26      ;
+; state[19]                               ; 29      ;
+; state[22]                               ; 26      ;
+; state[20]                               ; 29      ;
+; state[23]                               ; 17      ;
+; state[105]                              ; 29      ;
+; state[109]                              ; 26      ;
+; state[9]                                ; 29      ;
+; state[10]                               ; 26      ;
+; state[11]                               ; 29      ;
+; state[14]                               ; 26      ;
+; state[13]                               ; 26      ;
+; state[15]                               ; 17      ;
+; state[96]                               ; 26      ;
+; state[97]                               ; 29      ;
+; state[101]                              ; 26      ;
+; state[100]                              ; 29      ;
+; state[48]                               ; 26      ;
+; state[51]                               ; 29      ;
+; state[52]                               ; 29      ;
+; state[55]                               ; 17      ;
+; state[90]                               ; 26      ;
+; state[94]                               ; 26      ;
+; state[121]                              ; 29      ;
+; state[123]                              ; 29      ;
+; state[125]                              ; 26      ;
+; state[127]                              ; 17      ;
+; state[41]                               ; 29      ;
+; state[43]                               ; 29      ;
+; state[47]                               ; 17      ;
+; state[45]                               ; 26      ;
+; state[86]                               ; 26      ;
+; state[82]                               ; 26      ;
+; state[84]                               ; 29      ;
+; state[80]                               ; 26      ;
+; Total number of inverted registers = 77 ;         ;
++-----------------------------------------+---------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -284,30 +389,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
-; 4:1                ; 120 bits  ; 240 LEs       ; 240 LEs              ; 0 LEs                  ; Yes        ; |main_AES|state_inv[46]     ;
-; 4:1                ; 120 bits  ; 240 LEs       ; 240 LEs              ; 0 LEs                  ; Yes        ; |main_AES|state[15]         ;
+; 7:1                ; 25 bits   ; 100 LEs       ; 75 LEs               ; 25 LEs                 ; Yes        ; |main_AES|state_inv[78]     ;
+; 7:1                ; 50 bits   ; 200 LEs       ; 150 LEs              ; 50 LEs                 ; Yes        ; |main_AES|state[38]         ;
+; 8:1                ; 29 bits   ; 145 LEs       ; 116 LEs              ; 29 LEs                 ; Yes        ; |main_AES|state_inv[98]     ;
+; 8:1                ; 26 bits   ; 130 LEs       ; 104 LEs              ; 26 LEs                 ; Yes        ; |main_AES|state_inv[99]     ;
+; 8:1                ; 40 bits   ; 200 LEs       ; 160 LEs              ; 40 LEs                 ; Yes        ; |main_AES|state_inv[37]     ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; Yes        ; |main_AES|state[102]        ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; Yes        ; |main_AES|state[58]         ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |main_AES|state[57]         ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |main_AES|out_Byte[3]       ;
+; 7:1                ; 37 bits   ; 148 LEs       ; 111 LEs              ; 37 LEs                 ; Yes        ; |main_AES|state[86]         ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; Yes        ; |main_AES|state[65]         ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; Yes        ; |main_AES|state[13]         ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |main_AES|state[51]         ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; Yes        ; |main_AES|state[66]         ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:d|out[4] ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main_AES|state             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main_AES|state             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main_AES|state             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main_AES|state             ;
+; 4:1                ; 100 bits  ; 200 LEs       ; 200 LEs              ; 0 LEs                  ; No         ; |main_AES|decrypt_output    ;
+; 3:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; No         ; |main_AES|state             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main_AES|state             ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:c|out[5] ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:b|out[6] ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |main_AES|state_inv         ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:c|out[2] ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:c|out[0] ;
 ; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:b|out[2] ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main_AES|state             ;
 ; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:c|out[3] ;
 ; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main_AES|BCD_7seg:b|out[4] ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; No         ; |main_AES|state             ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; No         ; |main_AES|state_inv         ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |main_AES|state_inv         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
-
-
-+---------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: KeyExpansion:KEX ;
-+----------------+-------+--------------------------------------+
-; Parameter Name ; Value ; Type                                 ;
-+----------------+-------+--------------------------------------+
-; Nk             ; 8     ; Signed Integer                       ;
-; Nr             ; 14    ; Signed Integer                       ;
-; Nb             ; 4     ; Signed Integer                       ;
-+----------------+-------+--------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +--------------------------------------------+
@@ -337,112 +450,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------+-------+----------+--------------------+
 
 
-+-------------------------------------------------+
-; Port Connectivity Checks: "KeyExpansion:KEX"    ;
-+---------------+-------+----------+--------------+
-; Port          ; Type  ; Severity ; Details      ;
-+---------------+-------+----------+--------------+
-; key[225..224] ; Input ; Info     ; Stuck at VCC ;
-; key[202..201] ; Input ; Info     ; Stuck at VCC ;
-; key[194..192] ; Input ; Info     ; Stuck at VCC ;
-; key[161..160] ; Input ; Info     ; Stuck at VCC ;
-; key[155..154] ; Input ; Info     ; Stuck at VCC ;
-; key[147..146] ; Input ; Info     ; Stuck at VCC ;
-; key[139..137] ; Input ; Info     ; Stuck at VCC ;
-; key[131..128] ; Input ; Info     ; Stuck at VCC ;
-; key[97..96]   ; Input ; Info     ; Stuck at VCC ;
-; key[74..73]   ; Input ; Info     ; Stuck at VCC ;
-; key[66..64]   ; Input ; Info     ; Stuck at VCC ;
-; key[60..59]   ; Input ; Info     ; Stuck at VCC ;
-; key[52..51]   ; Input ; Info     ; Stuck at VCC ;
-; key[44..43]   ; Input ; Info     ; Stuck at VCC ;
-; key[36..35]   ; Input ; Info     ; Stuck at VCC ;
-; key[33..32]   ; Input ; Info     ; Stuck at VCC ;
-; key[28..26]   ; Input ; Info     ; Stuck at VCC ;
-; key[20..18]   ; Input ; Info     ; Stuck at VCC ;
-; key[12..9]    ; Input ; Info     ; Stuck at VCC ;
-; key[4..0]     ; Input ; Info     ; Stuck at VCC ;
-; key[255..241] ; Input ; Info     ; Stuck at GND ;
-; key[239..234] ; Input ; Info     ; Stuck at GND ;
-; key[232..226] ; Input ; Info     ; Stuck at GND ;
-; key[223..219] ; Input ; Info     ; Stuck at GND ;
-; key[217..211] ; Input ; Info     ; Stuck at GND ;
-; key[207..203] ; Input ; Info     ; Stuck at GND ;
-; key[200..195] ; Input ; Info     ; Stuck at GND ;
-; key[191..188] ; Input ; Info     ; Stuck at GND ;
-; key[186..180] ; Input ; Info     ; Stuck at GND ;
-; key[178..177] ; Input ; Info     ; Stuck at GND ;
-; key[175..172] ; Input ; Info     ; Stuck at GND ;
-; key[168..164] ; Input ; Info     ; Stuck at GND ;
-; key[159..156] ; Input ; Info     ; Stuck at GND ;
-; key[153..148] ; Input ; Info     ; Stuck at GND ;
-; key[143..140] ; Input ; Info     ; Stuck at GND ;
-; key[136..132] ; Input ; Info     ; Stuck at GND ;
-; key[127..125] ; Input ; Info     ; Stuck at GND ;
-; key[123..117] ; Input ; Info     ; Stuck at GND ;
-; key[115..113] ; Input ; Info     ; Stuck at GND ;
-; key[111..109] ; Input ; Info     ; Stuck at GND ;
-; key[107..106] ; Input ; Info     ; Stuck at GND ;
-; key[104..101] ; Input ; Info     ; Stuck at GND ;
-; key[99..98]   ; Input ; Info     ; Stuck at GND ;
-; key[95..93]   ; Input ; Info     ; Stuck at GND ;
-; key[89..85]   ; Input ; Info     ; Stuck at GND ;
-; key[79..77]   ; Input ; Info     ; Stuck at GND ;
-; key[72..69]   ; Input ; Info     ; Stuck at GND ;
-; key[63..61]   ; Input ; Info     ; Stuck at GND ;
-; key[58..53]   ; Input ; Info     ; Stuck at GND ;
-; key[50..49]   ; Input ; Info     ; Stuck at GND ;
-; key[47..45]   ; Input ; Info     ; Stuck at GND ;
-; key[40..37]   ; Input ; Info     ; Stuck at GND ;
-; key[31..29]   ; Input ; Info     ; Stuck at GND ;
-; key[25..21]   ; Input ; Info     ; Stuck at GND ;
-; key[15..13]   ; Input ; Info     ; Stuck at GND ;
-; key[8..5]     ; Input ; Info     ; Stuck at GND ;
-; key[240]      ; Input ; Info     ; Stuck at VCC ;
-; key[233]      ; Input ; Info     ; Stuck at VCC ;
-; key[218]      ; Input ; Info     ; Stuck at VCC ;
-; key[210]      ; Input ; Info     ; Stuck at VCC ;
-; key[209]      ; Input ; Info     ; Stuck at GND ;
-; key[208]      ; Input ; Info     ; Stuck at VCC ;
-; key[187]      ; Input ; Info     ; Stuck at VCC ;
-; key[179]      ; Input ; Info     ; Stuck at VCC ;
-; key[176]      ; Input ; Info     ; Stuck at VCC ;
-; key[171]      ; Input ; Info     ; Stuck at VCC ;
-; key[170]      ; Input ; Info     ; Stuck at GND ;
-; key[169]      ; Input ; Info     ; Stuck at VCC ;
-; key[163]      ; Input ; Info     ; Stuck at VCC ;
-; key[162]      ; Input ; Info     ; Stuck at GND ;
-; key[145]      ; Input ; Info     ; Stuck at GND ;
-; key[144]      ; Input ; Info     ; Stuck at VCC ;
-; key[124]      ; Input ; Info     ; Stuck at VCC ;
-; key[116]      ; Input ; Info     ; Stuck at VCC ;
-; key[112]      ; Input ; Info     ; Stuck at VCC ;
-; key[108]      ; Input ; Info     ; Stuck at VCC ;
-; key[105]      ; Input ; Info     ; Stuck at VCC ;
-; key[100]      ; Input ; Info     ; Stuck at VCC ;
-; key[92]       ; Input ; Info     ; Stuck at VCC ;
-; key[91]       ; Input ; Info     ; Stuck at GND ;
-; key[90]       ; Input ; Info     ; Stuck at VCC ;
-; key[84]       ; Input ; Info     ; Stuck at VCC ;
-; key[83]       ; Input ; Info     ; Stuck at GND ;
-; key[82]       ; Input ; Info     ; Stuck at VCC ;
-; key[81]       ; Input ; Info     ; Stuck at GND ;
-; key[80]       ; Input ; Info     ; Stuck at VCC ;
-; key[76]       ; Input ; Info     ; Stuck at VCC ;
-; key[75]       ; Input ; Info     ; Stuck at GND ;
-; key[68]       ; Input ; Info     ; Stuck at VCC ;
-; key[67]       ; Input ; Info     ; Stuck at GND ;
-; key[48]       ; Input ; Info     ; Stuck at VCC ;
-; key[42]       ; Input ; Info     ; Stuck at GND ;
-; key[41]       ; Input ; Info     ; Stuck at VCC ;
-; key[34]       ; Input ; Info     ; Stuck at GND ;
-; key[17]       ; Input ; Info     ; Stuck at GND ;
-; key[16]       ; Input ; Info     ; Stuck at VCC ;
-+---------------+-------+----------+--------------+
-
-
 +---------------------------------------------------+
-; Port Connectivity Checks: "AddRoundKey:AK"        ;
+; Port Connectivity Checks: "AddRoundKey:AK128"     ;
 +-----------------+-------+----------+--------------+
 ; Port            ; Type  ; Severity ; Details      ;
 +-----------------+-------+----------+--------------+
@@ -462,7 +471,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; state[16..13]   ; Input ; Info     ; Stuck at VCC ;
 ; state[11..9]    ; Input ; Info     ; Stuck at VCC ;
 ; state[7..0]     ; Input ; Info     ; Stuck at VCC ;
-; state[127..117] ; Input ; Info     ; Stuck at GND ;
+; state[120..117] ; Input ; Info     ; Stuck at GND ;
 ; state[115..113] ; Input ; Info     ; Stuck at GND ;
 ; state[111..110] ; Input ; Info     ; Stuck at GND ;
 ; state[108..106] ; Input ; Info     ; Stuck at GND ;
@@ -478,6 +487,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; state[50..49]   ; Input ; Info     ; Stuck at GND ;
 ; state[29..28]   ; Input ; Info     ; Stuck at GND ;
 ; state[25..24]   ; Input ; Info     ; Stuck at GND ;
+; state[127]      ; Input ; Info     ; Stuck at VCC ;
+; state[126]      ; Input ; Info     ; Stuck at GND ;
+; state[125]      ; Input ; Info     ; Stuck at VCC ;
+; state[124]      ; Input ; Info     ; Stuck at GND ;
+; state[123]      ; Input ; Info     ; Stuck at VCC ;
+; state[122]      ; Input ; Info     ; Stuck at GND ;
+; state[121]      ; Input ; Info     ; Stuck at VCC ;
 ; state[116]      ; Input ; Info     ; Stuck at VCC ;
 ; state[112]      ; Input ; Info     ; Stuck at VCC ;
 ; state[109]      ; Input ; Info     ; Stuck at VCC ;
@@ -514,31 +530,233 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-----------------------------------------------------+
+; Port Connectivity Checks: "KeyExpansion256:KEXP256" ;
++---------------+-------+----------+------------------+
+; Port          ; Type  ; Severity ; Details          ;
++---------------+-------+----------+------------------+
+; key[225..224] ; Input ; Info     ; Stuck at VCC     ;
+; key[202..201] ; Input ; Info     ; Stuck at VCC     ;
+; key[194..192] ; Input ; Info     ; Stuck at VCC     ;
+; key[161..160] ; Input ; Info     ; Stuck at VCC     ;
+; key[155..154] ; Input ; Info     ; Stuck at VCC     ;
+; key[147..146] ; Input ; Info     ; Stuck at VCC     ;
+; key[139..137] ; Input ; Info     ; Stuck at VCC     ;
+; key[131..128] ; Input ; Info     ; Stuck at VCC     ;
+; key[97..96]   ; Input ; Info     ; Stuck at VCC     ;
+; key[74..73]   ; Input ; Info     ; Stuck at VCC     ;
+; key[66..64]   ; Input ; Info     ; Stuck at VCC     ;
+; key[33..32]   ; Input ; Info     ; Stuck at VCC     ;
+; key[27..26]   ; Input ; Info     ; Stuck at VCC     ;
+; key[19..18]   ; Input ; Info     ; Stuck at VCC     ;
+; key[11..9]    ; Input ; Info     ; Stuck at VCC     ;
+; key[3..0]     ; Input ; Info     ; Stuck at VCC     ;
+; key[255..241] ; Input ; Info     ; Stuck at GND     ;
+; key[239..234] ; Input ; Info     ; Stuck at GND     ;
+; key[232..226] ; Input ; Info     ; Stuck at GND     ;
+; key[223..219] ; Input ; Info     ; Stuck at GND     ;
+; key[217..211] ; Input ; Info     ; Stuck at GND     ;
+; key[207..203] ; Input ; Info     ; Stuck at GND     ;
+; key[200..195] ; Input ; Info     ; Stuck at GND     ;
+; key[191..188] ; Input ; Info     ; Stuck at GND     ;
+; key[186..180] ; Input ; Info     ; Stuck at GND     ;
+; key[178..177] ; Input ; Info     ; Stuck at GND     ;
+; key[175..172] ; Input ; Info     ; Stuck at GND     ;
+; key[168..164] ; Input ; Info     ; Stuck at GND     ;
+; key[159..156] ; Input ; Info     ; Stuck at GND     ;
+; key[153..148] ; Input ; Info     ; Stuck at GND     ;
+; key[143..140] ; Input ; Info     ; Stuck at GND     ;
+; key[136..132] ; Input ; Info     ; Stuck at GND     ;
+; key[127..113] ; Input ; Info     ; Stuck at GND     ;
+; key[111..106] ; Input ; Info     ; Stuck at GND     ;
+; key[104..98]  ; Input ; Info     ; Stuck at GND     ;
+; key[95..91]   ; Input ; Info     ; Stuck at GND     ;
+; key[89..83]   ; Input ; Info     ; Stuck at GND     ;
+; key[79..75]   ; Input ; Info     ; Stuck at GND     ;
+; key[72..67]   ; Input ; Info     ; Stuck at GND     ;
+; key[63..60]   ; Input ; Info     ; Stuck at GND     ;
+; key[58..52]   ; Input ; Info     ; Stuck at GND     ;
+; key[50..49]   ; Input ; Info     ; Stuck at GND     ;
+; key[47..44]   ; Input ; Info     ; Stuck at GND     ;
+; key[40..36]   ; Input ; Info     ; Stuck at GND     ;
+; key[31..28]   ; Input ; Info     ; Stuck at GND     ;
+; key[25..20]   ; Input ; Info     ; Stuck at GND     ;
+; key[15..12]   ; Input ; Info     ; Stuck at GND     ;
+; key[8..4]     ; Input ; Info     ; Stuck at GND     ;
+; key[240]      ; Input ; Info     ; Stuck at VCC     ;
+; key[233]      ; Input ; Info     ; Stuck at VCC     ;
+; key[218]      ; Input ; Info     ; Stuck at VCC     ;
+; key[210]      ; Input ; Info     ; Stuck at VCC     ;
+; key[209]      ; Input ; Info     ; Stuck at GND     ;
+; key[208]      ; Input ; Info     ; Stuck at VCC     ;
+; key[187]      ; Input ; Info     ; Stuck at VCC     ;
+; key[179]      ; Input ; Info     ; Stuck at VCC     ;
+; key[176]      ; Input ; Info     ; Stuck at VCC     ;
+; key[171]      ; Input ; Info     ; Stuck at VCC     ;
+; key[170]      ; Input ; Info     ; Stuck at GND     ;
+; key[169]      ; Input ; Info     ; Stuck at VCC     ;
+; key[163]      ; Input ; Info     ; Stuck at VCC     ;
+; key[162]      ; Input ; Info     ; Stuck at GND     ;
+; key[145]      ; Input ; Info     ; Stuck at GND     ;
+; key[144]      ; Input ; Info     ; Stuck at VCC     ;
+; key[112]      ; Input ; Info     ; Stuck at VCC     ;
+; key[105]      ; Input ; Info     ; Stuck at VCC     ;
+; key[90]       ; Input ; Info     ; Stuck at VCC     ;
+; key[82]       ; Input ; Info     ; Stuck at VCC     ;
+; key[81]       ; Input ; Info     ; Stuck at GND     ;
+; key[80]       ; Input ; Info     ; Stuck at VCC     ;
+; key[59]       ; Input ; Info     ; Stuck at VCC     ;
+; key[51]       ; Input ; Info     ; Stuck at VCC     ;
+; key[48]       ; Input ; Info     ; Stuck at VCC     ;
+; key[43]       ; Input ; Info     ; Stuck at VCC     ;
+; key[42]       ; Input ; Info     ; Stuck at GND     ;
+; key[41]       ; Input ; Info     ; Stuck at VCC     ;
+; key[35]       ; Input ; Info     ; Stuck at VCC     ;
+; key[34]       ; Input ; Info     ; Stuck at GND     ;
+; key[17]       ; Input ; Info     ; Stuck at GND     ;
+; key[16]       ; Input ; Info     ; Stuck at VCC     ;
++---------------+-------+----------+------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "KeyExpansion192:KEXP192" ;
++---------------+-------+----------+------------------+
+; Port          ; Type  ; Severity ; Details          ;
++---------------+-------+----------+------------------+
+; key[161..160] ; Input ; Info     ; Stuck at VCC     ;
+; key[138..137] ; Input ; Info     ; Stuck at VCC     ;
+; key[130..128] ; Input ; Info     ; Stuck at VCC     ;
+; key[97..96]   ; Input ; Info     ; Stuck at VCC     ;
+; key[91..90]   ; Input ; Info     ; Stuck at VCC     ;
+; key[83..82]   ; Input ; Info     ; Stuck at VCC     ;
+; key[75..73]   ; Input ; Info     ; Stuck at VCC     ;
+; key[67..64]   ; Input ; Info     ; Stuck at VCC     ;
+; key[33..32]   ; Input ; Info     ; Stuck at VCC     ;
+; key[10..9]    ; Input ; Info     ; Stuck at VCC     ;
+; key[2..0]     ; Input ; Info     ; Stuck at VCC     ;
+; key[191..177] ; Input ; Info     ; Stuck at GND     ;
+; key[175..170] ; Input ; Info     ; Stuck at GND     ;
+; key[168..162] ; Input ; Info     ; Stuck at GND     ;
+; key[159..155] ; Input ; Info     ; Stuck at GND     ;
+; key[153..147] ; Input ; Info     ; Stuck at GND     ;
+; key[143..139] ; Input ; Info     ; Stuck at GND     ;
+; key[136..131] ; Input ; Info     ; Stuck at GND     ;
+; key[127..124] ; Input ; Info     ; Stuck at GND     ;
+; key[122..116] ; Input ; Info     ; Stuck at GND     ;
+; key[114..113] ; Input ; Info     ; Stuck at GND     ;
+; key[111..108] ; Input ; Info     ; Stuck at GND     ;
+; key[104..100] ; Input ; Info     ; Stuck at GND     ;
+; key[95..92]   ; Input ; Info     ; Stuck at GND     ;
+; key[89..84]   ; Input ; Info     ; Stuck at GND     ;
+; key[79..76]   ; Input ; Info     ; Stuck at GND     ;
+; key[72..68]   ; Input ; Info     ; Stuck at GND     ;
+; key[63..49]   ; Input ; Info     ; Stuck at GND     ;
+; key[47..42]   ; Input ; Info     ; Stuck at GND     ;
+; key[40..34]   ; Input ; Info     ; Stuck at GND     ;
+; key[31..27]   ; Input ; Info     ; Stuck at GND     ;
+; key[25..19]   ; Input ; Info     ; Stuck at GND     ;
+; key[15..11]   ; Input ; Info     ; Stuck at GND     ;
+; key[8..3]     ; Input ; Info     ; Stuck at GND     ;
+; key[176]      ; Input ; Info     ; Stuck at VCC     ;
+; key[169]      ; Input ; Info     ; Stuck at VCC     ;
+; key[154]      ; Input ; Info     ; Stuck at VCC     ;
+; key[146]      ; Input ; Info     ; Stuck at VCC     ;
+; key[145]      ; Input ; Info     ; Stuck at GND     ;
+; key[144]      ; Input ; Info     ; Stuck at VCC     ;
+; key[123]      ; Input ; Info     ; Stuck at VCC     ;
+; key[115]      ; Input ; Info     ; Stuck at VCC     ;
+; key[112]      ; Input ; Info     ; Stuck at VCC     ;
+; key[107]      ; Input ; Info     ; Stuck at VCC     ;
+; key[106]      ; Input ; Info     ; Stuck at GND     ;
+; key[105]      ; Input ; Info     ; Stuck at VCC     ;
+; key[99]       ; Input ; Info     ; Stuck at VCC     ;
+; key[98]       ; Input ; Info     ; Stuck at GND     ;
+; key[81]       ; Input ; Info     ; Stuck at GND     ;
+; key[80]       ; Input ; Info     ; Stuck at VCC     ;
+; key[48]       ; Input ; Info     ; Stuck at VCC     ;
+; key[41]       ; Input ; Info     ; Stuck at VCC     ;
+; key[26]       ; Input ; Info     ; Stuck at VCC     ;
+; key[18]       ; Input ; Info     ; Stuck at VCC     ;
+; key[17]       ; Input ; Info     ; Stuck at GND     ;
+; key[16]       ; Input ; Info     ; Stuck at VCC     ;
++---------------+-------+----------+------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "KeyExpansion128:KEXP128" ;
++---------------+-------+----------+------------------+
+; Port          ; Type  ; Severity ; Details          ;
++---------------+-------+----------+------------------+
+; key[97..96]   ; Input ; Info     ; Stuck at VCC     ;
+; key[74..73]   ; Input ; Info     ; Stuck at VCC     ;
+; key[66..64]   ; Input ; Info     ; Stuck at VCC     ;
+; key[33..32]   ; Input ; Info     ; Stuck at VCC     ;
+; key[27..26]   ; Input ; Info     ; Stuck at VCC     ;
+; key[19..18]   ; Input ; Info     ; Stuck at VCC     ;
+; key[11..9]    ; Input ; Info     ; Stuck at VCC     ;
+; key[3..0]     ; Input ; Info     ; Stuck at VCC     ;
+; key[127..113] ; Input ; Info     ; Stuck at GND     ;
+; key[111..106] ; Input ; Info     ; Stuck at GND     ;
+; key[104..98]  ; Input ; Info     ; Stuck at GND     ;
+; key[95..91]   ; Input ; Info     ; Stuck at GND     ;
+; key[89..83]   ; Input ; Info     ; Stuck at GND     ;
+; key[79..75]   ; Input ; Info     ; Stuck at GND     ;
+; key[72..67]   ; Input ; Info     ; Stuck at GND     ;
+; key[63..60]   ; Input ; Info     ; Stuck at GND     ;
+; key[58..52]   ; Input ; Info     ; Stuck at GND     ;
+; key[50..49]   ; Input ; Info     ; Stuck at GND     ;
+; key[47..44]   ; Input ; Info     ; Stuck at GND     ;
+; key[40..36]   ; Input ; Info     ; Stuck at GND     ;
+; key[31..28]   ; Input ; Info     ; Stuck at GND     ;
+; key[25..20]   ; Input ; Info     ; Stuck at GND     ;
+; key[15..12]   ; Input ; Info     ; Stuck at GND     ;
+; key[8..4]     ; Input ; Info     ; Stuck at GND     ;
+; key[112]      ; Input ; Info     ; Stuck at VCC     ;
+; key[105]      ; Input ; Info     ; Stuck at VCC     ;
+; key[90]       ; Input ; Info     ; Stuck at VCC     ;
+; key[82]       ; Input ; Info     ; Stuck at VCC     ;
+; key[81]       ; Input ; Info     ; Stuck at GND     ;
+; key[80]       ; Input ; Info     ; Stuck at VCC     ;
+; key[59]       ; Input ; Info     ; Stuck at VCC     ;
+; key[51]       ; Input ; Info     ; Stuck at VCC     ;
+; key[48]       ; Input ; Info     ; Stuck at VCC     ;
+; key[43]       ; Input ; Info     ; Stuck at VCC     ;
+; key[42]       ; Input ; Info     ; Stuck at GND     ;
+; key[41]       ; Input ; Info     ; Stuck at VCC     ;
+; key[35]       ; Input ; Info     ; Stuck at VCC     ;
+; key[34]       ; Input ; Info     ; Stuck at GND     ;
+; key[17]       ; Input ; Info     ; Stuck at GND     ;
+; key[16]       ; Input ; Info     ; Stuck at VCC     ;
++---------------+-------+----------+------------------+
+
+
++-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; arriav_ff             ; 585                         ;
-;     ENA               ; 280                         ;
-;     ENA SLD           ; 120                         ;
-;     SLD               ; 8                           ;
-;     plain             ; 177                         ;
-; arriav_lcell_comb     ; 2880                        ;
-;     arith             ; 63                          ;
-;         1 data inputs ; 62                          ;
-;         2 data inputs ; 1                           ;
-;     normal            ; 2817                        ;
+;     CLR               ; 177                         ;
+;     ENA               ; 231                         ;
+;     ENA CLR           ; 152                         ;
+;     ENA SLD           ; 25                          ;
+; arriav_lcell_comb     ; 5324                        ;
+;     arith             ; 73                          ;
+;         1 data inputs ; 68                          ;
+;         2 data inputs ; 5                           ;
+;     extend            ; 98                          ;
+;         7 data inputs ; 98                          ;
+;     normal            ; 5153                        ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 72                          ;
-;         2 data inputs ; 90                          ;
-;         3 data inputs ; 138                         ;
-;         4 data inputs ; 515                         ;
-;         5 data inputs ; 400                         ;
-;         6 data inputs ; 1601                        ;
-; boundary_port         ; 24                          ;
+;         1 data inputs ; 31                          ;
+;         2 data inputs ; 296                         ;
+;         3 data inputs ; 310                         ;
+;         4 data inputs ; 1066                        ;
+;         5 data inputs ; 987                         ;
+;         6 data inputs ; 2462                        ;
+; boundary_port         ; 27                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 8.00                        ;
-; Average LUT depth     ; 4.96                        ;
+; Max LUT depth         ; 9.30                        ;
+; Average LUT depth     ; 6.91                        ;
 +-----------------------+-----------------------------+
 
 
@@ -547,7 +765,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:08     ;
+; Top            ; 00:00:20     ;
 +----------------+--------------+
 
 
@@ -557,114 +775,460 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
-    Info: Processing started: Tue May  7 11:08:30 2024
+    Info: Processing started: Wed May 15 11:59:36 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AES_project -c main_AES
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
 Warning (12125): Using design file main_aes.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: main_AES File: D:/uni programming project/Verilog Project/main_aes.v Line: 1
+    Info (12023): Found entity 1: main_AES File: D:/modelsim/projects/AES_proj/main_aes.v Line: 1
 Info (12127): Elaborating entity "main_AES" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at main_aes.v(30): object "expected_out" assigned a value but never read File: D:/uni programming project/Verilog Project/main_aes.v Line: 30
-Warning (10855): Verilog HDL warning at main_aes.v(56): initial value for variable state should be constant File: D:/uni programming project/Verilog Project/main_aes.v Line: 56
-Warning (10855): Verilog HDL warning at main_aes.v(56): initial value for variable out_Byte should be constant File: D:/uni programming project/Verilog Project/main_aes.v Line: 56
+Warning (10855): Verilog HDL warning at main_aes.v(81): initial value for variable state should be constant File: D:/modelsim/projects/AES_proj/main_aes.v Line: 81
+Warning (10855): Verilog HDL warning at main_aes.v(81): initial value for variable out_Byte should be constant File: D:/modelsim/projects/AES_proj/main_aes.v Line: 81
+Warning (10855): Verilog HDL warning at main_aes.v(81): initial value for variable Nr should be constant File: D:/modelsim/projects/AES_proj/main_aes.v Line: 81
+Warning (10855): Verilog HDL warning at main_aes.v(81): initial value for variable round_num_inv should be constant File: D:/modelsim/projects/AES_proj/main_aes.v Line: 81
+Warning (10240): Verilog HDL Always Construct warning at main_aes.v(208): inferring latch(es) for variable "Nr", which holds its previous value in one or more paths through the always construct File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[0]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[1]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[2]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[3]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[4]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[5]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[6]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[7]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[8]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[9]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[10]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[11]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[12]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[13]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[14]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[15]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[16]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[17]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[18]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[19]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[20]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[21]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[22]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[23]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[24]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[25]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[26]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[27]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[28]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[29]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[30]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Info (10041): Inferred latch for "Nr[31]" at main_aes.v(208) File: D:/modelsim/projects/AES_proj/main_aes.v Line: 208
+Warning (10463): Verilog HDL Declaration warning at keyexpansion128.v(17): "new" is SystemVerilog-2005 keyword File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 17
+Warning (12125): Using design file keyexpansion128.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: KeyExpansion128 File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 1
+Info (12128): Elaborating entity "KeyExpansion128" for hierarchy "KeyExpansion128:KEXP128" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 113
+Warning (10463): Verilog HDL Declaration warning at keyexpansion192.v(17): "new" is SystemVerilog-2005 keyword File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 17
+Warning (12125): Using design file keyexpansion192.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: KeyExpansion192 File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 1
+Info (12128): Elaborating entity "KeyExpansion192" for hierarchy "KeyExpansion192:KEXP192" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 114
+Warning (10463): Verilog HDL Declaration warning at keyexpansion256.v(17): "new" is SystemVerilog-2005 keyword File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 17
+Warning (12125): Using design file keyexpansion256.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: KeyExpansion256 File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 1
+Info (12128): Elaborating entity "KeyExpansion256" for hierarchy "KeyExpansion256:KEXP256" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 115
 Warning (12125): Using design file addroundkey.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: AddRoundKey File: D:/uni programming project/Verilog Project/addroundkey.v Line: 1
-Info (12128): Elaborating entity "AddRoundKey" for hierarchy "AddRoundKey:AK" File: D:/uni programming project/Verilog Project/main_aes.v Line: 70
-Warning (10463): Verilog HDL Declaration warning at keyexpansion.v(13): "new" is SystemVerilog-2005 keyword File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 13
-Warning (12125): Using design file keyexpansion.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: KeyExpansion File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 1
-Info (12128): Elaborating entity "KeyExpansion" for hierarchy "KeyExpansion:KEX" File: D:/uni programming project/Verilog Project/main_aes.v Line: 71
+    Info (12023): Found entity 1: AddRoundKey File: D:/modelsim/projects/AES_proj/addroundkey.v Line: 1
+Info (12128): Elaborating entity "AddRoundKey" for hierarchy "AddRoundKey:AK128" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 119
 Warning (12125): Using design file encryptround.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: encryptRound File: D:/uni programming project/Verilog Project/encryptround.v Line: 1
-Info (12128): Elaborating entity "encryptRound" for hierarchy "encryptRound:ER" File: D:/uni programming project/Verilog Project/main_aes.v Line: 72
+    Info (12023): Found entity 1: encryptRound File: D:/modelsim/projects/AES_proj/encryptround.v Line: 1
+Info (12128): Elaborating entity "encryptRound" for hierarchy "encryptRound:ER128" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 120
 Warning (12125): Using design file subbyte.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: subByte File: D:/uni programming project/Verilog Project/subbyte.v Line: 1
-Info (12128): Elaborating entity "subByte" for hierarchy "encryptRound:ER|subByte:SB" File: D:/uni programming project/Verilog Project/encryptround.v Line: 14
+    Info (12023): Found entity 1: subByte File: D:/modelsim/projects/AES_proj/subbyte.v Line: 1
+Info (12128): Elaborating entity "subByte" for hierarchy "encryptRound:ER128|subByte:SB" File: D:/modelsim/projects/AES_proj/encryptround.v Line: 14
 Warning (12125): Using design file shiftrow127.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: shiftrow127 File: D:/uni programming project/Verilog Project/shiftrow127.v Line: 1
-Info (12128): Elaborating entity "shiftrow127" for hierarchy "encryptRound:ER|shiftrow127:SR" File: D:/uni programming project/Verilog Project/encryptround.v Line: 15
+    Info (12023): Found entity 1: shiftrow127 File: D:/modelsim/projects/AES_proj/shiftrow127.v Line: 1
+Info (12128): Elaborating entity "shiftrow127" for hierarchy "encryptRound:ER128|shiftrow127:SR" File: D:/modelsim/projects/AES_proj/encryptround.v Line: 15
 Warning (12125): Using design file mixcolumns.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: MixColumns File: D:/uni programming project/Verilog Project/mixcolumns.v Line: 1
-Info (12128): Elaborating entity "MixColumns" for hierarchy "encryptRound:ER|MixColumns:MC" File: D:/uni programming project/Verilog Project/encryptround.v Line: 16
-Warning (10230): Verilog HDL assignment warning at mixcolumns.v(11): truncated value with size 32 to match size of target (8) File: D:/uni programming project/Verilog Project/mixcolumns.v Line: 11
+    Info (12023): Found entity 1: MixColumns File: D:/modelsim/projects/AES_proj/mixcolumns.v Line: 1
+Info (12128): Elaborating entity "MixColumns" for hierarchy "encryptRound:ER128|MixColumns:MC" File: D:/modelsim/projects/AES_proj/encryptround.v Line: 16
+Warning (10230): Verilog HDL assignment warning at mixcolumns.v(11): truncated value with size 32 to match size of target (8) File: D:/modelsim/projects/AES_proj/mixcolumns.v Line: 11
 Warning (12125): Using design file decryptround.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: decryptRound File: D:/uni programming project/Verilog Project/decryptround.v Line: 1
-Info (12128): Elaborating entity "decryptRound" for hierarchy "decryptRound:IDR" File: D:/uni programming project/Verilog Project/main_aes.v Line: 86
+    Info (12023): Found entity 1: decryptRound File: D:/modelsim/projects/AES_proj/decryptround.v Line: 1
+Info (12128): Elaborating entity "decryptRound" for hierarchy "decryptRound:IDR128" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 160
 Warning (12125): Using design file inv_shiftrow127.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: inv_shiftrow127 File: D:/uni programming project/Verilog Project/inv_shiftrow127.v Line: 1
-Info (12128): Elaborating entity "inv_shiftrow127" for hierarchy "decryptRound:IDR|inv_shiftrow127:ISR" File: D:/uni programming project/Verilog Project/decryptround.v Line: 14
+    Info (12023): Found entity 1: inv_shiftrow127 File: D:/modelsim/projects/AES_proj/inv_shiftrow127.v Line: 1
+Info (12128): Elaborating entity "inv_shiftrow127" for hierarchy "decryptRound:IDR128|inv_shiftrow127:ISR" File: D:/modelsim/projects/AES_proj/decryptround.v Line: 14
 Warning (12125): Using design file inverse_subbyte.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: inverse_subByte File: D:/uni programming project/Verilog Project/inverse_subbyte.v Line: 2
-Info (12128): Elaborating entity "inverse_subByte" for hierarchy "decryptRound:IDR|inverse_subByte:ISB" File: D:/uni programming project/Verilog Project/decryptround.v Line: 15
+    Info (12023): Found entity 1: inverse_subByte File: D:/modelsim/projects/AES_proj/inverse_subbyte.v Line: 2
+Info (12128): Elaborating entity "inverse_subByte" for hierarchy "decryptRound:IDR128|inverse_subByte:ISB" File: D:/modelsim/projects/AES_proj/decryptround.v Line: 15
 Warning (12125): Using design file invmixcolumns.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: InvMixColumns File: D:/uni programming project/Verilog Project/invmixcolumns.v Line: 1
-Info (12128): Elaborating entity "InvMixColumns" for hierarchy "decryptRound:IDR|InvMixColumns:MC" File: D:/uni programming project/Verilog Project/decryptround.v Line: 17
-Warning (10230): Verilog HDL assignment warning at invmixcolumns.v(9): truncated value with size 32 to match size of target (8) File: D:/uni programming project/Verilog Project/invmixcolumns.v Line: 9
-Warning (10230): Verilog HDL assignment warning at invmixcolumns.v(46): truncated value with size 32 to match size of target (8) File: D:/uni programming project/Verilog Project/invmixcolumns.v Line: 46
+    Info (12023): Found entity 1: InvMixColumns File: D:/modelsim/projects/AES_proj/invmixcolumns.v Line: 1
+Info (12128): Elaborating entity "InvMixColumns" for hierarchy "decryptRound:IDR128|InvMixColumns:MC" File: D:/modelsim/projects/AES_proj/decryptround.v Line: 17
+Warning (10230): Verilog HDL assignment warning at invmixcolumns.v(9): truncated value with size 32 to match size of target (8) File: D:/modelsim/projects/AES_proj/invmixcolumns.v Line: 9
+Warning (10230): Verilog HDL assignment warning at invmixcolumns.v(46): truncated value with size 32 to match size of target (8) File: D:/modelsim/projects/AES_proj/invmixcolumns.v Line: 46
 Warning (12125): Using design file add4bit.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: ADD4BIT File: D:/uni programming project/Verilog Project/add4bit.v Line: 1
-Info (12128): Elaborating entity "ADD4BIT" for hierarchy "ADD4BIT:a" File: D:/uni programming project/Verilog Project/main_aes.v Line: 100
+    Info (12023): Found entity 1: ADD4BIT File: D:/modelsim/projects/AES_proj/add4bit.v Line: 1
+Info (12128): Elaborating entity "ADD4BIT" for hierarchy "ADD4BIT:a" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 200
 Warning (12125): Using design file add3.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: add3 File: D:/uni programming project/Verilog Project/add3.v Line: 1
-Info (12128): Elaborating entity "add3" for hierarchy "ADD4BIT:a|add3:t1" File: D:/uni programming project/Verilog Project/add4bit.v Line: 23
+    Info (12023): Found entity 1: add3 File: D:/modelsim/projects/AES_proj/add3.v Line: 1
+Info (12128): Elaborating entity "add3" for hierarchy "ADD4BIT:a|add3:t1" File: D:/modelsim/projects/AES_proj/add4bit.v Line: 23
 Warning (12125): Using design file bcd_7seg.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: BCD_7seg File: D:/uni programming project/Verilog Project/bcd_7seg.v Line: 1
-Info (12128): Elaborating entity "BCD_7seg" for hierarchy "BCD_7seg:b" File: D:/uni programming project/Verilog Project/main_aes.v Line: 102
-Info (276014): Found 52 instances of uninferred RAM logic
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram0" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram1" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram2" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram3" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram4" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram5" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram6" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram7" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram8" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram9" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram10" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram11" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram12" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram13" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram14" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram15" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram16" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram17" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram18" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram19" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram20" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram21" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram22" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram23" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram24" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram25" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram26" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram27" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram28" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram29" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram30" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram31" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram32" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram33" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram34" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram35" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram36" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram37" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram38" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram39" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram40" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram41" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram42" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram43" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram44" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram45" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram46" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram47" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram48" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram49" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram50" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
-    Info (276007): RAM logic "KeyExpansion:KEX|Ram51" is uninferred due to asynchronous read logic File: D:/uni programming project/Verilog Project/keyexpansion.v Line: 84
+    Info (12023): Found entity 1: BCD_7seg File: D:/modelsim/projects/AES_proj/bcd_7seg.v Line: 1
+Info (12128): Elaborating entity "BCD_7seg" for hierarchy "BCD_7seg:b" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 202
+Info (276014): Found 220 instances of uninferred RAM logic
+    Info (276007): RAM logic "subByte:SB256|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB256|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER256|subByte:SB|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB192|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER192|subByte:SB|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "subByte:SB128|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "encryptRound:ER128|subByte:SB|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/subbyte.v Line: 7
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram16" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram17" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram18" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram19" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram20" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram21" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram22" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram23" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram24" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram25" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram26" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram27" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram28" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram29" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram30" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram31" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram32" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram33" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram34" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram35" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram36" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram37" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram38" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram39" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram40" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram41" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram42" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram43" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram44" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram45" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram46" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram47" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram48" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram49" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram50" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion256:KEXP256|Ram51" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion256.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram16" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram17" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram18" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram19" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram20" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram21" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram22" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram23" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram24" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram25" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram26" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram27" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram28" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram29" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram30" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion192:KEXP192|Ram31" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion192.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram0" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram1" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram2" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram3" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram4" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram5" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram6" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram7" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram8" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram9" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram10" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram11" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram12" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram13" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram14" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram15" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram16" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram17" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram18" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram19" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram20" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram21" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram22" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram23" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram24" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram25" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram26" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram27" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram28" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram29" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram30" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram31" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram32" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram33" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram34" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram35" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram36" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram37" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram38" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+    Info (276007): RAM logic "KeyExpansion128:KEXP128|Ram39" is uninferred due to asynchronous read logic File: D:/modelsim/projects/AES_proj/keyexpansion128.v Line: 88
+Info (13000): Registers with preset signals will power-up high File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "decrypt_output[123]" is converted into an equivalent circuit using register "decrypt_output[123]~_emulated" and latch "decrypt_output[123]~1" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "round_num_inv[2]" is converted into an equivalent circuit using register "round_num_inv[2]~_emulated" and latch "round_num_inv[2]~1" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "round_num_inv[1]" is converted into an equivalent circuit using register "round_num_inv[1]~_emulated" and latch "round_num_inv[1]~5" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[122]" is converted into an equivalent circuit using register "decrypt_output[122]~_emulated" and latch "decrypt_output[122]~5" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[121]" is converted into an equivalent circuit using register "decrypt_output[121]~_emulated" and latch "decrypt_output[121]~9" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[120]" is converted into an equivalent circuit using register "decrypt_output[120]~_emulated" and latch "decrypt_output[120]~13" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[119]" is converted into an equivalent circuit using register "decrypt_output[119]~_emulated" and latch "decrypt_output[119]~17" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[118]" is converted into an equivalent circuit using register "decrypt_output[118]~_emulated" and latch "decrypt_output[118]~21" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[117]" is converted into an equivalent circuit using register "decrypt_output[117]~_emulated" and latch "decrypt_output[117]~25" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[116]" is converted into an equivalent circuit using register "decrypt_output[116]~_emulated" and latch "decrypt_output[116]~29" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[115]" is converted into an equivalent circuit using register "decrypt_output[115]~_emulated" and latch "decrypt_output[115]~33" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[114]" is converted into an equivalent circuit using register "decrypt_output[114]~_emulated" and latch "decrypt_output[114]~37" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[113]" is converted into an equivalent circuit using register "decrypt_output[113]~_emulated" and latch "decrypt_output[113]~41" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[112]" is converted into an equivalent circuit using register "decrypt_output[112]~_emulated" and latch "decrypt_output[112]~45" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[111]" is converted into an equivalent circuit using register "decrypt_output[111]~_emulated" and latch "decrypt_output[111]~49" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[110]" is converted into an equivalent circuit using register "decrypt_output[110]~_emulated" and latch "decrypt_output[110]~53" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[109]" is converted into an equivalent circuit using register "decrypt_output[109]~_emulated" and latch "decrypt_output[109]~57" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[108]" is converted into an equivalent circuit using register "decrypt_output[108]~_emulated" and latch "decrypt_output[108]~61" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[107]" is converted into an equivalent circuit using register "decrypt_output[107]~_emulated" and latch "decrypt_output[107]~65" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[106]" is converted into an equivalent circuit using register "decrypt_output[106]~_emulated" and latch "decrypt_output[106]~69" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[105]" is converted into an equivalent circuit using register "decrypt_output[105]~_emulated" and latch "decrypt_output[105]~73" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[104]" is converted into an equivalent circuit using register "decrypt_output[104]~_emulated" and latch "decrypt_output[104]~77" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[103]" is converted into an equivalent circuit using register "decrypt_output[103]~_emulated" and latch "decrypt_output[103]~81" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[102]" is converted into an equivalent circuit using register "decrypt_output[102]~_emulated" and latch "decrypt_output[102]~85" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[101]" is converted into an equivalent circuit using register "decrypt_output[101]~_emulated" and latch "decrypt_output[101]~89" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[100]" is converted into an equivalent circuit using register "decrypt_output[100]~_emulated" and latch "decrypt_output[100]~93" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[99]" is converted into an equivalent circuit using register "decrypt_output[99]~_emulated" and latch "decrypt_output[99]~97" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[98]" is converted into an equivalent circuit using register "decrypt_output[98]~_emulated" and latch "decrypt_output[98]~101" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[97]" is converted into an equivalent circuit using register "decrypt_output[97]~_emulated" and latch "decrypt_output[97]~105" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[96]" is converted into an equivalent circuit using register "decrypt_output[96]~_emulated" and latch "decrypt_output[96]~109" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[95]" is converted into an equivalent circuit using register "decrypt_output[95]~_emulated" and latch "decrypt_output[95]~113" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[94]" is converted into an equivalent circuit using register "decrypt_output[94]~_emulated" and latch "decrypt_output[94]~117" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[93]" is converted into an equivalent circuit using register "decrypt_output[93]~_emulated" and latch "decrypt_output[93]~121" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[92]" is converted into an equivalent circuit using register "decrypt_output[92]~_emulated" and latch "decrypt_output[92]~125" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[91]" is converted into an equivalent circuit using register "decrypt_output[91]~_emulated" and latch "decrypt_output[91]~129" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[90]" is converted into an equivalent circuit using register "decrypt_output[90]~_emulated" and latch "decrypt_output[90]~133" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[89]" is converted into an equivalent circuit using register "decrypt_output[89]~_emulated" and latch "decrypt_output[89]~137" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[88]" is converted into an equivalent circuit using register "decrypt_output[88]~_emulated" and latch "decrypt_output[88]~141" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[87]" is converted into an equivalent circuit using register "decrypt_output[87]~_emulated" and latch "decrypt_output[87]~145" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[86]" is converted into an equivalent circuit using register "decrypt_output[86]~_emulated" and latch "decrypt_output[86]~149" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[85]" is converted into an equivalent circuit using register "decrypt_output[85]~_emulated" and latch "decrypt_output[85]~153" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[84]" is converted into an equivalent circuit using register "decrypt_output[84]~_emulated" and latch "decrypt_output[84]~157" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[83]" is converted into an equivalent circuit using register "decrypt_output[83]~_emulated" and latch "decrypt_output[83]~161" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[82]" is converted into an equivalent circuit using register "decrypt_output[82]~_emulated" and latch "decrypt_output[82]~165" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[81]" is converted into an equivalent circuit using register "decrypt_output[81]~_emulated" and latch "decrypt_output[81]~169" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[80]" is converted into an equivalent circuit using register "decrypt_output[80]~_emulated" and latch "decrypt_output[80]~173" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[79]" is converted into an equivalent circuit using register "decrypt_output[79]~_emulated" and latch "decrypt_output[79]~177" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[78]" is converted into an equivalent circuit using register "decrypt_output[78]~_emulated" and latch "decrypt_output[78]~181" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[77]" is converted into an equivalent circuit using register "decrypt_output[77]~_emulated" and latch "decrypt_output[77]~185" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[76]" is converted into an equivalent circuit using register "decrypt_output[76]~_emulated" and latch "decrypt_output[76]~189" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[75]" is converted into an equivalent circuit using register "decrypt_output[75]~_emulated" and latch "decrypt_output[75]~193" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[74]" is converted into an equivalent circuit using register "decrypt_output[74]~_emulated" and latch "decrypt_output[74]~197" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[73]" is converted into an equivalent circuit using register "decrypt_output[73]~_emulated" and latch "decrypt_output[73]~201" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[72]" is converted into an equivalent circuit using register "decrypt_output[72]~_emulated" and latch "decrypt_output[72]~205" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[71]" is converted into an equivalent circuit using register "decrypt_output[71]~_emulated" and latch "decrypt_output[71]~209" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[70]" is converted into an equivalent circuit using register "decrypt_output[70]~_emulated" and latch "decrypt_output[70]~213" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[69]" is converted into an equivalent circuit using register "decrypt_output[69]~_emulated" and latch "decrypt_output[69]~217" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[68]" is converted into an equivalent circuit using register "decrypt_output[68]~_emulated" and latch "decrypt_output[68]~221" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[67]" is converted into an equivalent circuit using register "decrypt_output[67]~_emulated" and latch "decrypt_output[67]~225" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[66]" is converted into an equivalent circuit using register "decrypt_output[66]~_emulated" and latch "decrypt_output[66]~229" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[65]" is converted into an equivalent circuit using register "decrypt_output[65]~_emulated" and latch "decrypt_output[65]~233" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[64]" is converted into an equivalent circuit using register "decrypt_output[64]~_emulated" and latch "decrypt_output[64]~237" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[63]" is converted into an equivalent circuit using register "decrypt_output[63]~_emulated" and latch "decrypt_output[63]~241" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[62]" is converted into an equivalent circuit using register "decrypt_output[62]~_emulated" and latch "decrypt_output[62]~245" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[61]" is converted into an equivalent circuit using register "decrypt_output[61]~_emulated" and latch "decrypt_output[61]~249" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[60]" is converted into an equivalent circuit using register "decrypt_output[60]~_emulated" and latch "decrypt_output[60]~253" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[59]" is converted into an equivalent circuit using register "decrypt_output[59]~_emulated" and latch "decrypt_output[59]~257" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[58]" is converted into an equivalent circuit using register "decrypt_output[58]~_emulated" and latch "decrypt_output[58]~261" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[57]" is converted into an equivalent circuit using register "decrypt_output[57]~_emulated" and latch "decrypt_output[57]~265" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[56]" is converted into an equivalent circuit using register "decrypt_output[56]~_emulated" and latch "decrypt_output[56]~269" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[55]" is converted into an equivalent circuit using register "decrypt_output[55]~_emulated" and latch "decrypt_output[55]~273" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[54]" is converted into an equivalent circuit using register "decrypt_output[54]~_emulated" and latch "decrypt_output[54]~277" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[53]" is converted into an equivalent circuit using register "decrypt_output[53]~_emulated" and latch "decrypt_output[53]~281" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[52]" is converted into an equivalent circuit using register "decrypt_output[52]~_emulated" and latch "decrypt_output[52]~285" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[51]" is converted into an equivalent circuit using register "decrypt_output[51]~_emulated" and latch "decrypt_output[51]~289" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[50]" is converted into an equivalent circuit using register "decrypt_output[50]~_emulated" and latch "decrypt_output[50]~293" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[48]" is converted into an equivalent circuit using register "decrypt_output[48]~_emulated" and latch "decrypt_output[48]~297" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[47]" is converted into an equivalent circuit using register "decrypt_output[47]~_emulated" and latch "decrypt_output[47]~301" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[46]" is converted into an equivalent circuit using register "decrypt_output[46]~_emulated" and latch "decrypt_output[46]~305" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[45]" is converted into an equivalent circuit using register "decrypt_output[45]~_emulated" and latch "decrypt_output[45]~309" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[44]" is converted into an equivalent circuit using register "decrypt_output[44]~_emulated" and latch "decrypt_output[44]~313" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[43]" is converted into an equivalent circuit using register "decrypt_output[43]~_emulated" and latch "decrypt_output[43]~317" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[42]" is converted into an equivalent circuit using register "decrypt_output[42]~_emulated" and latch "decrypt_output[42]~321" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[41]" is converted into an equivalent circuit using register "decrypt_output[41]~_emulated" and latch "decrypt_output[41]~325" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[40]" is converted into an equivalent circuit using register "decrypt_output[40]~_emulated" and latch "decrypt_output[40]~329" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[39]" is converted into an equivalent circuit using register "decrypt_output[39]~_emulated" and latch "decrypt_output[39]~333" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[38]" is converted into an equivalent circuit using register "decrypt_output[38]~_emulated" and latch "decrypt_output[38]~337" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[37]" is converted into an equivalent circuit using register "decrypt_output[37]~_emulated" and latch "decrypt_output[37]~341" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[36]" is converted into an equivalent circuit using register "decrypt_output[36]~_emulated" and latch "decrypt_output[36]~345" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[35]" is converted into an equivalent circuit using register "decrypt_output[35]~_emulated" and latch "decrypt_output[35]~349" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[34]" is converted into an equivalent circuit using register "decrypt_output[34]~_emulated" and latch "decrypt_output[34]~353" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[33]" is converted into an equivalent circuit using register "decrypt_output[33]~_emulated" and latch "decrypt_output[33]~357" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[32]" is converted into an equivalent circuit using register "decrypt_output[32]~_emulated" and latch "decrypt_output[32]~361" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[31]" is converted into an equivalent circuit using register "decrypt_output[31]~_emulated" and latch "decrypt_output[31]~365" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[30]" is converted into an equivalent circuit using register "decrypt_output[30]~_emulated" and latch "decrypt_output[30]~369" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[29]" is converted into an equivalent circuit using register "decrypt_output[29]~_emulated" and latch "decrypt_output[29]~373" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[28]" is converted into an equivalent circuit using register "decrypt_output[28]~_emulated" and latch "decrypt_output[28]~377" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[27]" is converted into an equivalent circuit using register "decrypt_output[27]~_emulated" and latch "decrypt_output[27]~381" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[26]" is converted into an equivalent circuit using register "decrypt_output[26]~_emulated" and latch "decrypt_output[26]~385" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[25]" is converted into an equivalent circuit using register "decrypt_output[25]~_emulated" and latch "decrypt_output[25]~389" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[24]" is converted into an equivalent circuit using register "decrypt_output[24]~_emulated" and latch "decrypt_output[24]~393" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[23]" is converted into an equivalent circuit using register "decrypt_output[23]~_emulated" and latch "decrypt_output[23]~397" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[22]" is converted into an equivalent circuit using register "decrypt_output[22]~_emulated" and latch "decrypt_output[22]~401" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[21]" is converted into an equivalent circuit using register "decrypt_output[21]~_emulated" and latch "decrypt_output[21]~405" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[20]" is converted into an equivalent circuit using register "decrypt_output[20]~_emulated" and latch "decrypt_output[20]~409" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[19]" is converted into an equivalent circuit using register "decrypt_output[19]~_emulated" and latch "decrypt_output[19]~413" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[18]" is converted into an equivalent circuit using register "decrypt_output[18]~_emulated" and latch "decrypt_output[18]~417" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[17]" is converted into an equivalent circuit using register "decrypt_output[17]~_emulated" and latch "decrypt_output[17]~421" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[16]" is converted into an equivalent circuit using register "decrypt_output[16]~_emulated" and latch "decrypt_output[16]~425" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[15]" is converted into an equivalent circuit using register "decrypt_output[15]~_emulated" and latch "decrypt_output[15]~429" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[14]" is converted into an equivalent circuit using register "decrypt_output[14]~_emulated" and latch "decrypt_output[14]~433" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[13]" is converted into an equivalent circuit using register "decrypt_output[13]~_emulated" and latch "decrypt_output[13]~437" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[12]" is converted into an equivalent circuit using register "decrypt_output[12]~_emulated" and latch "decrypt_output[12]~441" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[11]" is converted into an equivalent circuit using register "decrypt_output[11]~_emulated" and latch "decrypt_output[11]~445" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[9]" is converted into an equivalent circuit using register "decrypt_output[9]~_emulated" and latch "decrypt_output[9]~449" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[8]" is converted into an equivalent circuit using register "decrypt_output[8]~_emulated" and latch "decrypt_output[8]~453" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[7]" is converted into an equivalent circuit using register "decrypt_output[7]~_emulated" and latch "decrypt_output[7]~457" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[6]" is converted into an equivalent circuit using register "decrypt_output[6]~_emulated" and latch "decrypt_output[6]~461" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[5]" is converted into an equivalent circuit using register "decrypt_output[5]~_emulated" and latch "decrypt_output[5]~465" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[4]" is converted into an equivalent circuit using register "decrypt_output[4]~_emulated" and latch "decrypt_output[4]~469" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[3]" is converted into an equivalent circuit using register "decrypt_output[3]~_emulated" and latch "decrypt_output[3]~473" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[2]" is converted into an equivalent circuit using register "decrypt_output[2]~_emulated" and latch "decrypt_output[2]~477" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[1]" is converted into an equivalent circuit using register "decrypt_output[1]~_emulated" and latch "decrypt_output[1]~481" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[0]" is converted into an equivalent circuit using register "decrypt_output[0]~_emulated" and latch "decrypt_output[0]~485" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[49]" is converted into an equivalent circuit using register "decrypt_output[49]~_emulated" and latch "decrypt_output[49]~489" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[10]" is converted into an equivalent circuit using register "decrypt_output[10]~_emulated" and latch "decrypt_output[10]~493" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[127]" is converted into an equivalent circuit using register "decrypt_output[127]~_emulated" and latch "decrypt_output[127]~497" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[126]" is converted into an equivalent circuit using register "decrypt_output[126]~_emulated" and latch "decrypt_output[126]~501" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[125]" is converted into an equivalent circuit using register "decrypt_output[125]~_emulated" and latch "decrypt_output[125]~505" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Warning (13310): Register "decrypt_output[124]" is converted into an equivalent circuit using register "decrypt_output[124]~_emulated" and latch "decrypt_output[124]~509" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "round_num_inv[2]~1" merged with LATCH primitive "Nr[2]" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
+    Info (13026): Duplicate LATCH primitive "round_num_inv[1]~5" merged with LATCH primitive "Nr[1]" File: D:/modelsim/projects/AES_proj/main_aes.v Line: 239
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "_7seg2[1]" is stuck at GND File: D:/uni programming project/Verilog Project/main_aes.v Line: 6
+    Warning (13410): Pin "_7seg2[1]" is stuck at GND File: D:/modelsim/projects/AES_proj/main_aes.v Line: 8
 Info (286030): Timing-Driven Synthesis is running
 Warning (20013): Ignored 24 assignments for entity "TEST" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity TEST -section_id Top was ignored
@@ -691,16 +1255,23 @@ Warning (20013): Ignored 24 assignments for entity "TEST" -- entity does not exi
     Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity TEST -section_id Top was ignored
     Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity TEST -section_id Top was ignored
     Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity TEST -section_id Top was ignored
+Info (144001): Generated suppressed messages file D:/modelsim/projects/AES_proj/output_files/main_AES.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 3110 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 2 input pins
+Info (21057): Implemented 5472 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
     Info (21059): Implemented 22 output pins
-    Info (21061): Implemented 3086 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 49 warnings
-    Info: Peak virtual memory: 4974 megabytes
-    Info: Processing ended: Tue May  7 11:08:50 2024
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:32
+    Info (21061): Implemented 5445 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 186 warnings
+    Info: Peak virtual memory: 5592 megabytes
+    Info: Processing ended: Wed May 15 12:00:11 2024
+    Info: Elapsed time: 00:00:35
+    Info: Total CPU time (on all processors): 00:00:28
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in D:/modelsim/projects/AES_proj/output_files/main_AES.map.smsg.
 
 

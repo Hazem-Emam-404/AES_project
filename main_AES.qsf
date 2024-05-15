@@ -61,8 +61,11 @@ set_global_assignment -name PARTITION_COLOR 16764057 -entity TEST -section_id To
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_location_assignment PIN_AA14 -to clk
 set_location_assignment PIN_V16 -to LED
+set_location_assignment PIN_AB12 -to decription_en
+set_location_assignment PIN_AC12 -to mode[0]
+set_location_assignment PIN_AF9 -to mode[1]
+set_location_assignment PIN_AA14 -to clk
 set_location_assignment PIN_AE26 -to _7seg0[0]
 set_location_assignment PIN_AE27 -to _7seg0[1]
 set_location_assignment PIN_AE28 -to _7seg0[2]
@@ -84,5 +87,5 @@ set_location_assignment PIN_AC28 -to _7seg2[3]
 set_location_assignment PIN_AD30 -to _7seg2[4]
 set_location_assignment PIN_AC29 -to _7seg2[5]
 set_location_assignment PIN_AC30 -to _7seg2[6]
-set_location_assignment PIN_AB12 -to decription_en
+set_location_assignment PIN_AF10 -to reset
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
